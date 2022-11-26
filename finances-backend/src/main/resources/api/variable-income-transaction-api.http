@@ -1,0 +1,46 @@
+### Save Transaction
+POST {{variable-income-transaction-endpoint}}
+Content-Type: application/json
+
+{
+  "assetCode": "BBAS3",
+  "assetType": "STOCK",
+  "operationDate": "2022-09-09",
+  "operationType": "BUY",
+  "operationAverageCost": 41.20,
+  "numberOfShares": 10
+}
+
+### Delete Transaction by ID
+DELETE {{variable-income-transaction-endpoint}}/1
+
+### Find all Transactions (default PageInfo)
+GET {{variable-income-transaction-endpoint}}
+
+### Find all Transactions (custom PageInfo)
+GET {{variable-income-transaction-endpoint}}
+Content-Type: application/json
+
+{
+  "pageNumber": 0,
+  "pageSize": 10,
+  "orders": [
+    {
+      "direction": "DESC",
+      "property": "operationDate"
+    },
+    {
+    "direction": "ASC",
+    "property": "assetCode"
+    }
+  ]
+}
+
+### Find all Transaction of BBAS3 (default PageInfo)
+GET {{variable-income-transaction-endpoint}}/bbas3
+
+### Find all Transaction by AssetType "STOCK" (default PageInfo)
+GET {{variable-income-transaction-endpoint}}/assetType/STOCK
+
+### Find all Transaction with operation date of 09/09/2022 (default PageInfo)
+GET {{variable-income-transaction-endpoint}}/operationDate/2022-09-09
