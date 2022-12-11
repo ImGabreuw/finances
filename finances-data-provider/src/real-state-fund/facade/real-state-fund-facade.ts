@@ -1,9 +1,9 @@
 import { Page } from "puppeteer";
-import { ReclameAquiFacade } from "../../reclame-aqui/facade/reclame-aqui-facade.js";
-import { RealStateFundDTO } from "../gateway/dto/real-state-fund-dto.js";
-import { RealStateFundAPI } from "../gateway/real-state-fund-api.js";
-import { RealStateFundStepsService } from "../services/real-state-fund-steps-service.js";
-import { RealStateFundXPathService } from "../services/real-state-fund-xpath-service.js";
+import { ReclameAquiFacade } from "../../reclame-aqui/facade/reclame-aqui-facade";
+import { RealStateFundDTO } from "../gateway/dto/real-state-fund-dto";
+import { RealStateFundAPI } from "../gateway/real-state-fund-api";
+import { RealStateFundStepsService } from "../services/real-state-fund-steps-service";
+import { RealStateFundXPathService } from "../services/real-state-fund-xpath-service";
 
 class RealStateFundFacade {
   constructor(private readonly page: Page) {}

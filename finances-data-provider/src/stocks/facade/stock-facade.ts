@@ -1,12 +1,12 @@
 import { Page } from "puppeteer";
-import { FundamentusStockDTO } from "../gateway/dto/fundamentus-stock-dto.js";
-import { StatusInvestStockDTO } from "../gateway/dto/status-invest-stock-dto.js";
-import { FundamentusStockAPI } from "../gateway/fundamentus-stock-api.js";
-import { StatusInvestStockAPI } from "../gateway/status-invest-stock-api.js";
-import { FundamentusStepsService } from "../service/fundamentus-steps-service.js";
-import { FundamentusXPathService } from "../service/fundamentus-xpath-service.js";
-import { StatusInvestStepsService } from "../service/status-invest-steps-service.js";
-import { StatusInvestXPathService } from "../service/status-invest-xpath-service.js";
+import { FundamentusStockDTO } from "../gateway/dto/fundamentus-stock-dto";
+import { StatusInvestStockDTO } from "../gateway/dto/status-invest-stock-dto";
+import { FundamentusStockAPI } from "../gateway/fundamentus-stock-api";
+import { StatusInvestStockAPI } from "../gateway/status-invest-stock-api";
+import { FundamentusStepsService } from "../service/fundamentus-steps-service";
+import { FundamentusXPathService } from "../service/fundamentus-xpath-service";
+import { StatusInvestStepsService } from "../service/status-invest-steps-service";
+import { StatusInvestXPathService } from "../service/status-invest-xpath-service";
 
 class StockFacade {
   private statusInvestStockAPI: StatusInvestStockAPI;

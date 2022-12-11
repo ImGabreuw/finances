@@ -1,10 +1,10 @@
 import { Page } from "puppeteer";
-import { NumberHelper } from "../../helpers/number-helper.js";
-import { PuppeteerHelper } from "../../helpers/puppeteer-helper.js";
-import { ReflectionHelper } from "../../helpers/reflection-helper.js";
+import { NumberHelper } from "../../helpers/number-helper";
+import { PuppeteerHelper } from "../../helpers/puppeteer-helper";
+import { ReflectionHelper } from "../../helpers/reflection-helper";
 import { DTO } from "./dto";
-import { SEARCH_STEPS_SECTION_NAME, StepsService } from "./steps-service.js";
-import { XPathService } from "./xpath-service.js";
+import { SEARCH_STEPS_SECTION_NAME, StepsService } from "./steps-service";
+import { XPathService } from "./xpath-service";
 
 abstract class API {
   protected constructor(

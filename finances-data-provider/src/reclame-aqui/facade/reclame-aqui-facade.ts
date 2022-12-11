@@ -1,8 +1,8 @@
 import { Page } from "puppeteer";
-import { ReclameAquiDTO } from "../gateway/dto/reclame-aqui-dto.js";
-import { ReclameAquiAPI } from "../gateway/reclame-aqui-api.js";
-import { ReclameAquiStepsService } from "../service/reclame-aqui-steps-service.js";
-import { ReclameAquiXPathService } from "../service/reclame-aqui-xpath-service.js";
+import { ReclameAquiDTO } from "../gateway/dto/reclame-aqui-dto";
+import { ReclameAquiAPI } from "../gateway/reclame-aqui-api";
+import { ReclameAquiStepsService } from "../service/reclame-aqui-steps-service";
+import { ReclameAquiXPathService } from "../service/reclame-aqui-xpath-service";
 
 class ReclameAquiFacade {
   constructor(private readonly page: Page) {}

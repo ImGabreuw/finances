@@ -1,5 +1,5 @@
 import {Page} from "puppeteer";
-import {RegisterSearchSteps, StepsService,} from "../../domain/adapters/steps-service.js";
+import {RegisterSearchSteps, StepsService,} from "../../domain/adapters/steps-service";
 
 class StatusInvestStepsService
   extends StepsService

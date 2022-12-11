@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
-import { PuppeteerLauncher } from "./puppeteer-launcher.js";
-import { RealStateFundFacade } from "./real-state-fund/facade/real-state-fund-facade.js";
-import { StockFacade } from "./stocks/facade/stock-facade.js";
+import { PuppeteerLauncher } from "./puppeteer-launcher";
+import { RealStateFundFacade } from "./real-state-fund/facade/real-state-fund-facade";
+import { StockFacade } from "./stocks/facade/stock-facade";
 
 const app = express();
 

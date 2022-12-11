@@ -1,4 +1,4 @@
-import { SectionXPaths } from "../types/xpath-type.js";
+import { SectionXPaths } from "../types/xpath-type";
 
 abstract class XPathService {
   private readonly XPATH = new Map<string, SectionXPaths>;

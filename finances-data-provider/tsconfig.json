@@ -5,8 +5,7 @@
       "ES2022",
       "DOM"
     ] /* Specify a set of bundled library declaration files that describe the target runtime environment. */,
-    "module": "ES2022" /* Specify what module code is generated. */,
-    "moduleResolution": "Node",
+    "module": "CommonJS" /* Specify what module code is generated. */,
     "sourceMap": true,
     "rootDir": "./src" /* Specify the root folder within your source files. */,
     "outDir": "./dist" /* Specify an output folder for all emitted files. */,

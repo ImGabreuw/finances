@@ -1,9 +1,9 @@
 import { Page } from "puppeteer";
-import { API } from "../../domain/adapters/api.js";
-import { CurrencyHelper } from "../../helpers/currency-helper.js";
-import { NumberHelper } from "../../helpers/number-helper.js";
-import { RealStateFundStepsService } from "../services/real-state-fund-steps-service.js";
-import { RealStateFundXPathService } from "../services/real-state-fund-xpath-service.js";
+import { API } from "../../domain/adapters/api";
+import { CurrencyHelper } from "../../helpers/currency-helper";
+import { NumberHelper } from "../../helpers/number-helper";
+import { RealStateFundStepsService } from "../services/real-state-fund-steps-service";
+import { RealStateFundXPathService } from "../services/real-state-fund-xpath-service";
 
 class RealStateFundAPI extends API {
   constructor(

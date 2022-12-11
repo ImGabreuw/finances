@@ -1,6 +1,6 @@
 import {Page} from "puppeteer";
-import {PuppeteerHelper} from "../../helpers/puppeteer-helper.js";
-import {SectionSteps} from "../types/step-type.js";
+import {PuppeteerHelper} from "../../helpers/puppeteer-helper";
+import {SectionSteps} from "../types/step-type";
 
 const SEARCH_STEPS_SECTION_NAME = "search";
 

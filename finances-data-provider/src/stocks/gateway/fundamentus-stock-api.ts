@@ -1,9 +1,9 @@
 import { Page } from "puppeteer";
-import { API } from "../../domain/adapters/api.js";
-import { CurrencyHelper } from "../../helpers/currency-helper.js";
-import { NumberHelper } from "../../helpers/number-helper.js";
-import { FundamentusStepsService } from "../service/fundamentus-steps-service.js";
-import { FundamentusXPathService } from "../service/fundamentus-xpath-service.js";
+import { API } from "../../domain/adapters/api";
+import { CurrencyHelper } from "../../helpers/currency-helper";
+import { NumberHelper } from "../../helpers/number-helper";
+import { FundamentusStepsService } from "../service/fundamentus-steps-service";
+import { FundamentusXPathService } from "../service/fundamentus-xpath-service";
 
 class FundamentusStockAPI extends API {
   constructor(

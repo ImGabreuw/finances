@@ -1,4 +1,4 @@
-import { RegisterSearchSteps } from "../domain/adapters/steps-service.js";
+import { RegisterSearchSteps } from "../domain/adapters/steps-service";
 
 class ReflectionHelper {
   private constructor() {}

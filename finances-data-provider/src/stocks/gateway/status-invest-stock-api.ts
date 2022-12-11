@@ -1,9 +1,9 @@
 import { Page } from "puppeteer";
-import { API } from "../../domain/adapters/api.js";
-import { CurrencyHelper } from "../../helpers/currency-helper.js";
-import { NumberHelper } from "../../helpers/number-helper.js";
-import { StatusInvestStepsService } from "../service/status-invest-steps-service.js";
-import { StatusInvestXPathService } from "../service/status-invest-xpath-service.js";
+import { API } from "../../domain/adapters/api";
+import { CurrencyHelper } from "../../helpers/currency-helper";
+import { NumberHelper } from "../../helpers/number-helper";
+import { StatusInvestStepsService } from "../service/status-invest-steps-service";
+import { StatusInvestXPathService } from "../service/status-invest-xpath-service";
 
 class StatusInvestStockAPI extends API {
   constructor(
