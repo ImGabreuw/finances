@@ -1,6 +1,6 @@
 import { RegisterSearchSteps } from "../domain/adapters/steps-service";
 
-class ReflectionHelper {
+export class ReflectionHelper {
   private constructor() {}
 
   static isImplementsRegisterSearchSteps(
