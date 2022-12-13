@@ -4,14 +4,12 @@ import { mapPathToProperty } from "../../../../helpers/zod-helper";
 import { Field } from "../../../../shared/validation/field";
 import { ValidationError } from "../../../../shared/validation/validation-error";
 import { Announcement } from "../../announcement";
-import { NotificationStatus } from "../../enums/notification-status";
 
 const announcementSchema = z.object({
   assetCode: z.string().trim().min(1),
   title: z.string().trim().min(1),
   releaseDate: z.date().max(new Date()),
   downloadUrl: z.string().url(),
-  notificationStatus: z.nativeEnum(NotificationStatus),
 });
 
 export function validate(announcement: Announcement): Announcement {
