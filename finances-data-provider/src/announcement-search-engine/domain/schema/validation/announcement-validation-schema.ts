@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { getParametersName } from "../../../../helpers/reflection-helper";
 import { mapPathToProperty } from "../../../../helpers/zod-helper";
 import { Field } from "../../../../shared/validation/field";
 import { ValidationError } from "../../../../shared/validation/validation-error";
@@ -27,9 +28,11 @@ export function validate(announcement: Announcement): Announcement {
         existingField?.violatedConstraints.push({ code, message });
       }
 
+      const announcementParameter = getParametersName(validate)[0];
+
       fields.set(propertyName, {
         name: propertyName,
-        value: eval(`announcement.${propertyName}`),
+        value: eval(`${announcementParameter}.${propertyName}`),
         violatedConstraints: [
           {
             code,
