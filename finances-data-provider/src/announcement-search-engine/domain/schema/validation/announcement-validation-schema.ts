@@ -10,6 +10,7 @@ const announcementSchema = z.object({
   assetCode: z.string().trim().min(1),
   title: z.string().trim().min(1),
   releaseDate: z.date().max(new Date()),
+  downloadUrl: z.string().url(),
   notificationStatus: z.nativeEnum(NotificationStatus),
 });
 

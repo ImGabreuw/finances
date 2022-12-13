@@ -5,7 +5,8 @@ test("should pass validation", () => {
   const underTest = new Announcement(
     "AGRO3",
     "Fato relevante",
-    new Date(Date.parse("2022-12-12"))
+    new Date(Date.parse("2022-12-12")),
+    "https://statusinvest.com.br/download"
   );
 
   expect(underTest).not.toBeNull();
@@ -17,7 +18,8 @@ test("should throw ValidationError when create Announcement because assetCode is
       new Announcement(
         " ",
         "Fato relevante",
-        new Date(Date.parse("2022-12-12"))
+        new Date(Date.parse("2022-12-12")),
+        "https://statusinvest.com.br/download"
       )
   ).toThrow(
     new ValidationError({

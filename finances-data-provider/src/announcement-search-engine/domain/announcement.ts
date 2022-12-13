@@ -8,6 +8,7 @@ export class Announcement {
     readonly assetCode: string,
     readonly title: string,
     readonly releaseDate: Date,
+    readonly downloadUrl: string,
     notificationStatus?: NotificationStatus
   ) {
     this._notificationStatus = notificationStatus || NotificationStatus.PENDING;
