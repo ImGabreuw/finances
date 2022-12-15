@@ -1,12 +1,10 @@
-import {
-  getAssetPageUrlInStatusInvest,
-  StatusInvestAnnouncementsGateway
-} from "../../../src/gateways/status_invest/status-invest-gateway";
+import { StatusInvestAnnouncementsGateway, StatusInvestSearchAssetGateway } from "../../../src/gateways/status_invest/status-invest-gateway";
 
 test.skip("should get AGRO3 page url in Status Invest", async () => {
   const assetCode = "AGRO3";
+  const statusInvestGateway = new StatusInvestSearchAssetGateway();
 
-  const underTest = await getAssetPageUrlInStatusInvest(assetCode);
+  const underTest = await statusInvestGateway.getAssetPageUrlInStatusInvest(assetCode);
 
   expect(underTest).toBe("https://statusinvest.com.br/acoes/agro3");
 }, 30_000);
