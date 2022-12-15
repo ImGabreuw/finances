@@ -6,7 +6,7 @@ import { RealStateFundStepsService } from "../services/real-state-fund-steps-ser
 import { RealStateFundXPathService } from "../services/real-state-fund-xpath-service";
 
 class RealStateFundFacade {
-  constructor(private readonly page: Page) {}
+  constructor(private readonly page: Page) { }
 
   async searchAndExtractData(code: string) {
     const realStateFundStepsService = new RealStateFundStepsService(this.page);
@@ -20,7 +20,7 @@ class RealStateFundFacade {
     const realStateFund = await realStateFundAPI.search<RealStateFundDTO>(code);
 
     const reclameAquiFacade = new ReclameAquiFacade(this.page);
-    const reclameAqui = reclameAquiFacade.searchAndExtractData(
+    const reclameAqui = await reclameAquiFacade.searchAndExtractData(
       realStateFund.Administrador
     );
 
