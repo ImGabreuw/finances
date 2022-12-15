@@ -1,58 +1,69 @@
+import { Browser, Page } from "puppeteer";
 import { Announcement } from "../../announcement-search-engine/domain/announcement";
 import { parseLocalFormat } from "../../helpers/date-helper";
 import { PuppeteerHelper } from "../../helpers/puppeteer-helper";
 import { PuppeteerLauncher } from "../../puppeteer-launcher";
 import { AssetNotFoundError } from "./errors/asset-not-found-error";
 
-export async function getAssetPageUrlInStatusInvest(
-  assetCode: string
-): Promise<string> {
-  const { browser, page } = await PuppeteerLauncher.launch();
+export class StatusInvestSearchAssetGateway {
+  constructor() { }
 
-  await page.goto("https://statusinvest.com.br");
+  async goToAssetPage(
+    assetCode: string
+  ): Promise<{ browser: Browser; page: Page }> {
+    const { browser, page } = await PuppeteerLauncher.launch();
 
-  await PuppeteerHelper.click(
-    page,
-    `#main-nav-nav > div > div > div > ul > li:nth-child(2) > a > i`,
-    "left"
-  );
+    await page.goto("https://statusinvest.com.br");
 
-  await PuppeteerHelper.type(
-    page,
-    `#main-search > div.input-form > span.twitter-typeahead > input.Typeahead-input.input.tt-input`,
-    assetCode
-  );
+    await PuppeteerHelper.click(
+      page,
+      `#main-nav-nav > div > div > div > ul > li:nth-child(2) > a > i`,
+      "left"
+    );
 
-  const assetNotFound = !(await PuppeteerHelper.isElementExists(
-    page,
-    `#main-search > div.Typeahead-menu > div > div`
-  ));
+    await PuppeteerHelper.type(
+      page,
+      `#main-search > div.input-form > span.twitter-typeahead > input.Typeahead-input.input.tt-input`,
+      assetCode
+    );
 
-  if (assetNotFound) {
-    throw new AssetNotFoundError(assetCode);
+    const assetNotFound = !(await PuppeteerHelper.isElementExists(
+      page,
+      `#main-search > div.Typeahead-menu > div > div`
+    ));
+
+    if (assetNotFound) {
+      throw new AssetNotFoundError(assetCode);
+    }
+
+    await PuppeteerHelper.click(
+      page,
+      `#main-search > div.Typeahead-menu > div > div > a`,
+      "left"
+    );
+
+    return { browser, page };
   }
 
-  await PuppeteerHelper.click(
-    page,
-    `#main-search > div.Typeahead-menu > div > div > a`,
-    "left"
-  );
+  async getAssetPageUrlInStatusInvest(assetCode: string): Promise<string> {
+    const { browser, page } = await this.goToAssetPage(assetCode);
 
-  await browser.close();
+    await browser.close();
 
-  return page.url();
+    return page.url();
+  }
 }
 
 export class StatusInvestAnnouncementsGateway {
-  constructor() {}
+  constructor() { }
 
   async getLastAnnouncement(assetCode: string): Promise<Announcement> {
-    const url = await getAssetPageUrlInStatusInvest(assetCode);
+    const statusInvestGateway = new StatusInvestSearchAssetGateway();
+    const { browser, page } = await statusInvestGateway.goToAssetPage(
+      assetCode
+    );
 
-    const { browser, page } = await PuppeteerLauncher.launch();
-
-    await page.goto(url);
-    await PuppeteerHelper.scroll(page, `#document-section > div > h2`)
+    await PuppeteerHelper.scroll(page, `#document-section > div > div.documents.card > div.list`);
 
     const rawTitle = await PuppeteerHelper.extractTextFrom(
       page,
@@ -60,11 +71,10 @@ export class StatusInvestAnnouncementsGateway {
     );
     const title = rawTitle !== null ? rawTitle.trim() : "";
 
-    const rawReleaseDate =
-      (await PuppeteerHelper.extractTextFrom(
-        page,
-        `/html/body/main/div[10]/div/div[3]/div[1]/div[1]/div[2]`
-      )) || "";
+    const rawReleaseDate = (await PuppeteerHelper.extractTextFrom(
+      page,
+      `/html/body/main/div[10]/div/div[3]/div[1]/div[1]/div[2]`
+    )) || "";
     const releaseDate = parseLocalFormat(rawReleaseDate);
 
     const rawDownloadUrl = await PuppeteerHelper.extractHrefFrom(

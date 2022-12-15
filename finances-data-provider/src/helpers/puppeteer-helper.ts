@@ -1,7 +1,7 @@
 import { MouseButton, Page, TimeoutError } from "puppeteer";
 
 class PuppeteerHelper {
-  private constructor() {}
+  private constructor() { }
 
   static async extractTextFrom(
     page: Page,
@@ -96,7 +96,14 @@ class PuppeteerHelper {
     }
   }
 
+  /**
+   *
+   * @param page Page
+   * @param selector Get the selector from an element which appears in the middle of the screen
+   */
   static async scroll(page: Page, selector: string): Promise<void> {
+    await page.waitForSelector(selector);
+
     await page.$eval(selector, (element) => {
       element.scrollIntoView({
         behavior: "smooth",
