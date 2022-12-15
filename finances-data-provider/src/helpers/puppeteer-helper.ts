@@ -23,6 +23,26 @@ class PuppeteerHelper {
     }
   }
 
+  static async extractHrefFrom(
+    page: Page,
+    selector: string
+  ): Promise<string | null> {
+    try {
+      await page.waitForSelector(selector, { timeout: 7_000 });
+
+      return await page.$eval(selector, (anchor) =>
+        anchor.getAttribute("href")
+      );
+    } catch (error) {
+      if (error instanceof TimeoutError) {
+        console.log(`element (${selector}) not found. Skipping...`);
+        return null;
+      }
+
+      throw error;
+    }
+  }
+
   static async click(
     page: Page,
     selector: string,
@@ -65,6 +85,25 @@ class PuppeteerHelper {
     if (clickType !== "left" && clickType !== "right") return "left";
 
     return clickType;
+  }
+
+  static async isElementExists(page: Page, selector: string): Promise<boolean> {
+    try {
+      await page.waitForSelector(selector, { timeout: 3_000 });
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  static async scroll(page: Page, selector: string): Promise<void> {
+    await page.$eval(selector, (element) => {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "end",
+      });
+    });
   }
 }
 
