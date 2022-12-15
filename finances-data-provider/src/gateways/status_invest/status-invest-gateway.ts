@@ -1,8 +1,8 @@
 import { Browser, Page } from "puppeteer";
-import { Announcement } from "../../announcement-search-engine/domain/announcement";
 import { parseLocalFormat } from "../../helpers/date-helper";
 import { PuppeteerHelper } from "../../helpers/puppeteer-helper";
 import { PuppeteerLauncher } from "../../puppeteer-launcher";
+import { AnnouncementDTO } from "./dto/announcement-dto";
 import { AssetNotFoundError } from "./errors/asset-not-found-error";
 
 export class StatusInvestSearchAssetGateway {
@@ -57,7 +57,7 @@ export class StatusInvestSearchAssetGateway {
 export class StatusInvestAnnouncementsGateway {
   constructor() { }
 
-  async getLastAnnouncement(assetCode: string): Promise<Announcement> {
+  async getLastAnnouncement(assetCode: string): Promise<AnnouncementDTO> {
     const statusInvestGateway = new StatusInvestSearchAssetGateway();
     const { browser, page } = await statusInvestGateway.goToAssetPage(
       assetCode
@@ -85,6 +85,6 @@ export class StatusInvestAnnouncementsGateway {
 
     await browser.close();
 
-    return new Announcement(assetCode, title, releaseDate, downloadUrl);
+    return { assetCode, title, releaseDate, downloadUrl }
   }
 }
