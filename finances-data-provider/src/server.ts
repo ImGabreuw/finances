@@ -1,9 +1,10 @@
 import express, { Request, Response } from "express";
 import { PuppeteerLauncher } from "./puppeteer-launcher";
 import { RealStateFundFacade } from "./real-state-fund/facade/real-state-fund-facade";
+import { routes } from "./routes";
 import { StockFacade } from "./stocks/facade/stock-facade";
 
-const app = express();
+export const app = express();
 
 const port = 3000;
 
@@ -12,6 +13,7 @@ app.listen(port, () => {
 });
 
 app.use(express.json());
+app.use(routes)
 
 app.get(
   "/real-state-fund/:assetCode",
