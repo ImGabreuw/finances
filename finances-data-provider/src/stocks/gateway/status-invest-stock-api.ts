@@ -1,7 +1,7 @@
 import { Page } from "puppeteer";
 import { API } from "../../domain/adapters/api";
-import { CurrencyHelper } from "../../helpers/currency-helper";
-import { NumberHelper } from "../../helpers/number-helper";
+import { CurrencyHelper } from "../../shared/helpers/currency-helper";
+import { NumberHelper } from "../../shared/helpers/number-helper";
 import { StatusInvestStepsService } from "../service/status-invest-steps-service";
 import { StatusInvestXPathService } from "../service/status-invest-xpath-service";
 

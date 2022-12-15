@@ -1,6 +1,6 @@
 import { Browser, Page } from "puppeteer";
-import { parseLocalFormat } from "../../helpers/date-helper";
-import { PuppeteerHelper } from "../../helpers/puppeteer-helper";
+import { parseLocalFormat } from "../../shared/helpers/date-helper";
+import { PuppeteerHelper } from "../../shared/helpers/puppeteer-helper";
 import { PuppeteerLauncher } from "../../puppeteer-launcher";
 import { AnnouncementDTO } from "./dto/announcement-dto";
 import { AssetNotFoundError } from "./errors/asset-not-found-error";

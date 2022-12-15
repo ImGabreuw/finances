@@ -1,6 +1,6 @@
 import { Page } from "puppeteer";
 import { API } from "../../domain/adapters/api";
-import { NumberHelper } from "../../helpers/number-helper";
+import { NumberHelper } from "../../shared/helpers/number-helper";
 import { ReclameAquiStepsService } from "../service/reclame-aqui-steps-service";
 import { ReclameAquiXPathService } from "../service/reclame-aqui-xpath-service";
 

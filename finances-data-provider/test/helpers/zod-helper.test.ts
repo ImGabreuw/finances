@@ -1,4 +1,4 @@
-import { mapPathToProperty } from "../../src/helpers/zod-helper";
+import { mapPathToProperty } from "../../src/shared/helpers/zod-helper";
 
 test("should map zod path to property of array", () => {
   const zodPath = ["names", 1];

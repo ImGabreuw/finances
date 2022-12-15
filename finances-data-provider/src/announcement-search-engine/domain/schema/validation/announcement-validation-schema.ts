@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { getParametersName } from "../../../../helpers/reflection-helper";
-import { mapPathToProperty } from "../../../../helpers/zod-helper";
+import { getParametersName } from "../../../../shared/helpers/reflection-helper";
+import { mapPathToProperty } from "../../../../shared/helpers/zod-helper";
 import { Field } from "../../../../shared/validation/field";
 import { ValidationError } from "../../../../shared/validation/validation-error";
 import { Announcement } from "../../announcement";

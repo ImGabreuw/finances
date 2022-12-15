@@ -1,7 +1,7 @@
 import { Page } from "puppeteer";
-import { NumberHelper } from "../../helpers/number-helper";
-import { PuppeteerHelper } from "../../helpers/puppeteer-helper";
-import { ReflectionHelper } from "../../helpers/reflection-helper";
+import { NumberHelper } from "../../shared/helpers/number-helper";
+import { PuppeteerHelper } from "../../shared/helpers/puppeteer-helper";
+import { ReflectionHelper } from "../../shared/helpers/reflection-helper";
 import { DTO } from "./dto";
 import { SEARCH_STEPS_SECTION_NAME, StepsService } from "./steps-service";
 import { XPathService } from "./xpath-service";

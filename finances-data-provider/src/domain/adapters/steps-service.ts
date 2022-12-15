@@ -1,5 +1,5 @@
 import {Page} from "puppeteer";
-import {PuppeteerHelper} from "../../helpers/puppeteer-helper";
+import {PuppeteerHelper} from "../../shared/helpers/puppeteer-helper";
 import {SectionSteps} from "../types/step-type";
 
 const SEARCH_STEPS_SECTION_NAME = "search";
