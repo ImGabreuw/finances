@@ -1,8 +1,11 @@
 import express, { Request, Response } from "express";
 import { GetLastAnnouncementUseCase } from "./announcement-search-engine/usecases/get-last-announcement-usecase";
 import { StatusInvestAnnouncementsGateway } from './gateways/status_invest/status-invest-gateway';
+import { PuppeteerLauncher } from "./puppeteer-launcher";
+import { RealStateFundFacade } from "./real-state-fund/facade/real-state-fund-facade";
 import { BaseError } from "./shared/errors/base-error";
 import { HttpStatus } from './shared/web/http-status';
+import { StockFacade } from "./stocks/facade/stock-facade";
 
 export const routes = express.Router();
 
@@ -30,5 +33,43 @@ routes.get("/announcements/:assetCode", async (request: Request, response: Respo
       message: `An expected error occurred. Please contact the support team.`
     })
   }
+});
 
-})
+routes.get(
+  "/real-state-fund/:assetCode",
+  async (request: Request, response: Response) => {
+    const { assetCode } = request.params;
+    const { browser, page } = await PuppeteerLauncher.launch();
+
+    try {
+      const result = await new RealStateFundFacade(page).searchAndExtractData(
+        assetCode
+      );
+
+      return response.json(result);
+    } catch ({ errorMessage }) {
+      return response.status(400).json({
+        error: errorMessage,
+      });
+    } finally {
+      await browser.close();
+    }
+  }
+);
+
+routes.get("/stock/:assetCode", async (request: Request, response: Response) => {
+  const { assetCode } = request.params;
+  const { browser, page } = await PuppeteerLauncher.launch();
+
+  try {
+    const result = await new StockFacade(page).searchAndExtractData(assetCode);
+
+    return response.json(result);
+  } catch ({ errorMessage }) {
+    return response.status(400).json({
+      error: errorMessage,
+    });
+  } finally {
+    await browser.close();
+  }
+});
