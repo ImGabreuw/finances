@@ -26,6 +26,7 @@ public class AnnouncementMapperImpl implements AnnouncementMapper {
                 .title(entity.getTitle())
                 .releaseDate(entity.getReleaseDate())
                 .downloadUrl(entity.getDownloadUrl())
+                .notificationStatus(entity.getNotificationStatus())
                 .build();
     }
 
@@ -36,6 +37,7 @@ public class AnnouncementMapperImpl implements AnnouncementMapper {
                 .title(domain.getTitle())
                 .releaseDate(domain.getReleaseDate())
                 .downloadUrl(domain.getDownloadUrl())
+                .notificationStatus(domain.getNotificationStatus())
                 .build();
     }
 

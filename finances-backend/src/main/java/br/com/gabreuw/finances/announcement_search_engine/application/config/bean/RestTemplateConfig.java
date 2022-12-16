@@ -1,4 +1,4 @@
-package br.com.gabreuw.finances.announcement_search_engine.application.config;
+package br.com.gabreuw.finances.announcement_search_engine.application.config.bean;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;

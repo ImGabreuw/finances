@@ -1,6 +1,5 @@
 package br.com.gabreuw.finances.announcement_search_engine.database.repository;
 
-import br.com.gabreuw.finances.announcement_search_engine.database.entities.AnnouncementEntity;
 import br.com.gabreuw.finances.announcement_search_engine.database.jpa.AnnouncementJpaRepository;
 import br.com.gabreuw.finances.announcement_search_engine.domain.adapters.mapper.AnnouncementMapper;
 import br.com.gabreuw.finances.announcement_search_engine.domain.adapters.repository.AnnouncementRepository;
@@ -44,7 +43,7 @@ public class AnnouncementRepositoryImpl implements AnnouncementRepository {
     @Override
     public List<Announcement> getUnnotifiedAnnouncements(String assetCode) {
         var announcements = announcementJpaRepository
-                .getAllByAssetCodeAndNotificationStatusContainsOrderByReleaseDateDesc(assetCode, PENDING, ERROR);
+                .getAllByAssetCodeIgnoreCaseAndNotificationStatusInOrderByReleaseDateDesc(assetCode, PENDING, ERROR);
 
         return announcementMapper.mapToDomainList(announcements);
     }

@@ -8,6 +8,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import static java.util.concurrent.TimeUnit.DAYS;
 import static lombok.AccessLevel.PRIVATE;
@@ -18,7 +19,11 @@ public class LocalDateHelper {
     private final static Faker FAKER = Faker.instance();
 
     public static LocalDate randomPastDate() {
-        var date = FAKER.date().past(360, DAYS).toInstant();
+        return randomPastDate(360, DAYS);
+    }
+
+    public static LocalDate randomPastDate(int atMost, TimeUnit timeUnit) {
+        var date = FAKER.date().past(atMost, timeUnit).toInstant();
 
         return LocalDate.ofInstant(date, ZoneId.systemDefault());
     }

@@ -1,6 +1,7 @@
 package br.com.gabreuw.finances.announcement_search_engine.database.entities;
 
 import br.com.gabreuw.finances.announcement_search_engine.domain.entities.enums.NotificationStatus;
+import br.com.gabreuw.finances.shared.validation.SelfValidation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,15 +16,15 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+import static br.com.gabreuw.finances.announcement_search_engine.domain.entities.enums.NotificationStatus.PENDING;
 import static javax.persistence.EnumType.STRING;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
 @Data
-public class AnnouncementEntity {
+public class AnnouncementEntity implements SelfValidation<AnnouncementEntity> {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -45,4 +46,14 @@ public class AnnouncementEntity {
     @Enumerated(STRING)
     private NotificationStatus notificationStatus;
 
+    public AnnouncementEntity(Long id, String assetCode, String title, LocalDate releaseDate, String downloadUrl, NotificationStatus notificationStatus) {
+        this.id = id;
+        this.assetCode = assetCode;
+        this.title = title;
+        this.releaseDate = releaseDate;
+        this.downloadUrl = downloadUrl;
+        this.notificationStatus = notificationStatus == null ? PENDING : notificationStatus;
+
+        validate(this);
+    }
 }

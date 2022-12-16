@@ -4,6 +4,6 @@ public enum NotificationStatus {
 
     NOTIFIED,
     PENDING,
-    ERROR
+    ERROR;
 
 }

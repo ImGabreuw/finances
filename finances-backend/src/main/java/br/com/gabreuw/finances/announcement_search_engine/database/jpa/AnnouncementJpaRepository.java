@@ -12,7 +12,7 @@ public interface AnnouncementJpaRepository extends JpaRepository<AnnouncementEnt
 
     AnnouncementEntity getByAssetCodeAndNotificationStatusOrderByReleaseDateDesc(String assetCode, NotificationStatus notificationStatus);
 
-    List<AnnouncementEntity> getAllByAssetCodeAndNotificationStatusContainsOrderByReleaseDateDesc(String assetCode, NotificationStatus... notificationStatus);
+    List<AnnouncementEntity> getAllByAssetCodeIgnoreCaseAndNotificationStatusInOrderByReleaseDateDesc(String assetCode, NotificationStatus... notificationStatus);
 
     AnnouncementEntity getByAssetCodeOrderByReleaseDateDesc(String assetCode);
 
