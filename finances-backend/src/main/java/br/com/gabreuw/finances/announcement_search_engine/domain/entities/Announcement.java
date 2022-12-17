@@ -50,7 +50,7 @@ public class Announcement implements SelfValidation<Announcement> {
         notificationStatus = NOTIFIED;
     }
 
-    public void notificationError() {
+    public void error() {
         notificationStatus = ERROR;
     }
 
