@@ -32,6 +32,7 @@ public class Announcement implements SelfValidation<Announcement> {
     @NotBlank
     @URL
     private String downloadUrl;
+
     private NotificationStatus notificationStatus;
 
     public Announcement(Long id, String assetCode, String title, LocalDate releaseDate, String downloadUrl, NotificationStatus notificationStatus) {
