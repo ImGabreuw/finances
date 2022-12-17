@@ -2,13 +2,13 @@ package br.com.gabreuw.finances.announcement_search_engine.domain.entities;
 
 import br.com.gabreuw.finances.announcement_search_engine.domain.entities.enums.NotificationStatus;
 import br.com.gabreuw.finances.shared.validation.SelfValidation;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.URL;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 import static br.com.gabreuw.finances.announcement_search_engine.domain.entities.enums.NotificationStatus.*;

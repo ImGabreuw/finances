@@ -2,14 +2,14 @@ package br.com.gabreuw.finances.shared.pagination;
 
 import br.com.gabreuw.finances.shared.validation.SelfValidation;
 import br.com.gabreuw.finances.transactions.variable.income.application.web.dto.request.PageInfoRequest;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;

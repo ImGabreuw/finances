@@ -8,11 +8,11 @@ import br.com.gabreuw.finances.transactions.fixed.income.domain.usecases.DeleteF
 import br.com.gabreuw.finances.transactions.fixed.income.domain.usecases.FindAllFixedIncomeTransactionUseCase;
 import br.com.gabreuw.finances.transactions.fixed.income.domain.usecases.SaveFixedIncomeTransactionUseCase;
 import br.com.gabreuw.finances.transactions.variable.income.application.web.dto.request.PageInfoRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;

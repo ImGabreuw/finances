@@ -7,11 +7,11 @@ import br.com.gabreuw.finances.transactions.variable.income.application.web.dto.
 import br.com.gabreuw.finances.transactions.variable.income.application.web.dto.request.SaveTransactionRequest;
 import br.com.gabreuw.finances.transactions.variable.income.application.web.dto.response.TransactionResponse;
 import br.com.gabreuw.finances.transactions.variable.income.domain.usecases.*;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;

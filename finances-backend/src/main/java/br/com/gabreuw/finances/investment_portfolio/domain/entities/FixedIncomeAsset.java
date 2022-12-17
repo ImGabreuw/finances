@@ -3,14 +3,13 @@ package br.com.gabreuw.finances.investment_portfolio.domain.entities;
 import br.com.gabreuw.finances.shared.helper.NumberHelper;
 import br.com.gabreuw.finances.shared.validation.SelfValidation;
 import br.com.gabreuw.finances.transactions.variable.income.domain.entities.enums.AssetType;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 
 @NoArgsConstructor
 @Builder

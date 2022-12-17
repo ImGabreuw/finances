@@ -3,11 +3,11 @@ package br.com.gabreuw.finances.transactions.fixed.income.application.web.dto.re
 import br.com.gabreuw.finances.transactions.fixed.income.domain.entities.enums.AssetType;
 import br.com.gabreuw.finances.transactions.fixed.income.domain.entities.enums.Indexer;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.time.LocalDate;
 

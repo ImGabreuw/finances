@@ -1,10 +1,12 @@
 package br.com.gabreuw.finances.shared.validation;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import jakarta.validation.Validator;
 
-import javax.validation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;

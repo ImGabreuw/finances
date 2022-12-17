@@ -2,16 +2,16 @@ package br.com.gabreuw.finances.transactions.variable.income.application.databas
 
 import br.com.gabreuw.finances.transactions.variable.income.domain.entities.enums.AssetType;
 import br.com.gabreuw.finances.transactions.variable.income.domain.entities.enums.OperationType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
-import static javax.persistence.EnumType.STRING;
-import static javax.persistence.GenerationType.IDENTITY;
+import static jakarta.persistence.EnumType.STRING;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @NoArgsConstructor

@@ -1,11 +1,11 @@
 package br.com.gabreuw.finances.announcement_search_engine.application.web.dto;
 
 import br.com.gabreuw.finances.shared.validation.SelfValidation;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import org.hibernate.validator.constraints.URL;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Builder
