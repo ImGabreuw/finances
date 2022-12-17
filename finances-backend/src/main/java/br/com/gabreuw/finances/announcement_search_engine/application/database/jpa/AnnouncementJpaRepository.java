@@ -1,6 +1,6 @@
-package br.com.gabreuw.finances.announcement_search_engine.database.jpa;
+package br.com.gabreuw.finances.announcement_search_engine.application.database.jpa;
 
-import br.com.gabreuw.finances.announcement_search_engine.database.entities.AnnouncementEntity;
+import br.com.gabreuw.finances.announcement_search_engine.application.database.entities.AnnouncementEntity;
 import br.com.gabreuw.finances.announcement_search_engine.domain.entities.enums.NotificationStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 

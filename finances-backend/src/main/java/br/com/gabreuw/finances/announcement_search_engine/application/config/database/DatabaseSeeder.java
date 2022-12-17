@@ -1,6 +1,6 @@
 package br.com.gabreuw.finances.announcement_search_engine.application.config.database;
 
-import br.com.gabreuw.finances.announcement_search_engine.database.jpa.AnnouncementJpaRepository;
+import br.com.gabreuw.finances.announcement_search_engine.application.database.jpa.AnnouncementJpaRepository;
 import br.com.gabreuw.finances.announcement_search_engine.domain.adapters.repository.AnnouncementRepository;
 import br.com.gabreuw.finances.announcement_search_engine.domain.entities.helper.AnnouncementHelper;
 import lombok.RequiredArgsConstructor;

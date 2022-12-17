@@ -1,7 +1,7 @@
 package br.com.gabreuw.finances.announcement_search_engine.application.mapper;
 
 import br.com.gabreuw.finances.announcement_search_engine.application.web.dto.AnnouncementDTO;
-import br.com.gabreuw.finances.announcement_search_engine.database.entities.AnnouncementEntity;
+import br.com.gabreuw.finances.announcement_search_engine.application.database.entities.AnnouncementEntity;
 import br.com.gabreuw.finances.announcement_search_engine.domain.adapters.mapper.AnnouncementMapper;
 import br.com.gabreuw.finances.announcement_search_engine.domain.entities.Announcement;
 import org.springframework.stereotype.Component;

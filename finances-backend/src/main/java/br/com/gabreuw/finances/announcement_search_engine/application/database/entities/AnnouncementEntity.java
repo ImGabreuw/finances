@@ -1,8 +1,7 @@
-package br.com.gabreuw.finances.announcement_search_engine.database.entities;
+package br.com.gabreuw.finances.announcement_search_engine.application.database.entities;
 
 import br.com.gabreuw.finances.announcement_search_engine.domain.entities.enums.NotificationStatus;
 import br.com.gabreuw.finances.shared.validation.SelfValidation;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
