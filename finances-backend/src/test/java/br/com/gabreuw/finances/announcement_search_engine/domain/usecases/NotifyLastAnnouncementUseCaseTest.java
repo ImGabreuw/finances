@@ -1,6 +1,5 @@
 package br.com.gabreuw.finances.announcement_search_engine.domain.usecases;
 
-import br.com.gabreuw.finances.announcement_search_engine.application.provider.FinancesDataProvider;
 import br.com.gabreuw.finances.announcement_search_engine.domain.adapters.provider.AnnouncementProvider;
 import br.com.gabreuw.finances.announcement_search_engine.domain.adapters.repository.AnnouncementRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,9 +14,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-class GetLastAnnouncementUseCaseTest {
+class NotifyLastAnnouncementUseCaseTest {
 
-    private GetLastAnnouncementUseCase underTest;
+    private NotifyLastAnnouncementUseCase underTest;
 
     @Autowired
     private AnnouncementProvider announcementProvider;
@@ -27,14 +26,14 @@ class GetLastAnnouncementUseCaseTest {
 
     @BeforeEach
     void setUp() {
-        underTest = new GetLastAnnouncementUseCase(announcementRepository, announcementProvider);
+        underTest = new NotifyLastAnnouncementUseCase(announcementRepository, announcementProvider);
     }
 
     @DisplayName("Should get last announcement of AGRO3 from Status Invest")
     @Test
     void shouldGetLastAnnouncementOfAgro3FromStatusInvest() {
         var assetCode = "AGRO3";
-        var input = new GetLastAnnouncementUseCase.InputValues(assetCode);
+        var input = new NotifyLastAnnouncementUseCase.InputValues(assetCode);
 
         var output = underTest.execute(input);
 
