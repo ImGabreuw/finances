@@ -6,13 +6,13 @@ import br.com.gabreuw.finances.announcement_search_engine.domain.entities.Announ
 import br.com.gabreuw.finances.announcement_search_engine.domain.errors.NotFoundAnnouncementsException;
 import br.com.gabreuw.finances.shared.usecase.UseCase;
 
-public record GetLastAnnouncementUseCase(
+public record NotifyLastAnnouncementUseCase(
         AnnouncementRepository announcementRepository,
         AnnouncementProvider announcementProvider
-) implements UseCase<GetLastAnnouncementUseCase.InputValues, GetLastAnnouncementUseCase.OutputValues> {
+) implements UseCase<NotifyLastAnnouncementUseCase.InputValues, NotifyLastAnnouncementUseCase.OutputValues> {
 
     @Override
-    public GetLastAnnouncementUseCase.OutputValues execute(GetLastAnnouncementUseCase.InputValues input) {
+    public NotifyLastAnnouncementUseCase.OutputValues execute(NotifyLastAnnouncementUseCase.InputValues input) {
         var assetCode = input.assetCode();
 
         var exists = announcementRepository.existsAnnouncementByAssetCode(assetCode);
@@ -27,6 +27,8 @@ public record GetLastAnnouncementUseCase(
                 .orElseThrow(() -> new NotFoundAnnouncementsException(assetCode));
 
         var savedAnnouncement = announcementRepository.save(lastAnnouncement);
+
+        // TODO: 16/12/2022 add notification service
 
         return new OutputValues(savedAnnouncement);
     }
