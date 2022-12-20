@@ -9,22 +9,24 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CalculateStocksPositionUseCaseTest {
+class CalculateVariableIncomePositionUseCaseTest {
 
-    private CalculateStocksPositionUseCase underTest;
+    private CalculateVariableIncomePositionUseCase underTest;
 
     @BeforeEach
     void setUp() {
         VariableIncomeTransactionRepository transactionRepository = new InMemoryVariableIncomeTransactionRepository();
-        underTest = new CalculateStocksPositionUseCase(transactionRepository);
+        underTest = new CalculateVariableIncomePositionUseCase(transactionRepository);
     }
 
     @DisplayName("Should calculate all assets position of the investment portfolio")
     @Test
     void shouldCalculateAllAssetsPositionOfTheInvestmentPortfolio() {
-        var input = new CalculateStocksPositionUseCase.InputValues();
+        var input = new CalculateVariableIncomePositionUseCase.InputValues();
 
         var output = underTest.execute(input);
+
+        System.out.println(output);
 
         assertThat(output.assets())
                 .map(VariableIncomeAsset::getCode)

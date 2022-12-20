@@ -5,22 +5,34 @@ import br.com.gabreuw.finances.investment_portfolio.domain.usecases.errors.DataI
 import br.com.gabreuw.finances.shared.usecase.UseCase;
 import br.com.gabreuw.finances.transactions.variable.income.domain.adapters.repository.VariableIncomeTransactionRepository;
 import br.com.gabreuw.finances.transactions.variable.income.domain.entities.VariableIncomeTransaction;
+import br.com.gabreuw.finances.transactions.variable.income.domain.entities.enums.AssetType;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static br.com.gabreuw.finances.transactions.variable.income.domain.entities.enums.AssetType.STOCK;
 import static br.com.gabreuw.finances.transactions.variable.income.domain.entities.enums.OperationType.SALE;
 
 @Component
-public record CalculateStocksPositionUseCase(
+public record CalculateVariableIncomePositionUseCase(
         VariableIncomeTransactionRepository transactionRepository
-) implements UseCase<CalculateStocksPositionUseCase.InputValues, CalculateStocksPositionUseCase.OutputValues> {
+) implements UseCase<CalculateVariableIncomePositionUseCase.InputValues, CalculateVariableIncomePositionUseCase.OutputValues> {
 
     @Override
-    public CalculateStocksPositionUseCase.OutputValues execute(CalculateStocksPositionUseCase.InputValues input) {
-        var portfolioAssets = transactionRepository.findAllByAssetType(STOCK)
+    public CalculateVariableIncomePositionUseCase.OutputValues execute(CalculateVariableIncomePositionUseCase.InputValues input) {
+        var assets = Arrays.stream(AssetType.values())
+                .map(this::makePositionByAssetType)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
+
+        return new OutputValues(assets);
+    }
+
+    private List<VariableIncomeAsset> makePositionByAssetType(AssetType assetType) {
+        var portfolioAssets = transactionRepository.findAllByAssetType(assetType)
                 .stream()
                 .map(VariableIncomeTransaction::getAssetCode)
                 .distinct()
@@ -49,12 +61,12 @@ public record CalculateStocksPositionUseCase(
                 throw new DataInconsistencyException("O 'número de cotas' ou 'total investido' não podem ter valores negativos. Por favor entrar em contato com o suporte.");
             }
 
-            var assetType = assetTransactions.get(0).getAssetType();
+            var transactionAssetType = assetTransactions.get(0).getAssetType();
 
             var asset = VariableIncomeAsset
                     .builder()
                     .code(assetCode)
-                    .type(assetType)
+                    .type(transactionAssetType)
                     .numberOfShares(numberOfShares)
                     .averagePrice(totalInvested / numberOfShares)
                     .build();
@@ -62,7 +74,7 @@ public record CalculateStocksPositionUseCase(
             assets.add(asset);
         }
 
-        return new OutputValues(assets);
+        return assets;
     }
 
     public record InputValues() implements UseCase.InputValues {
