@@ -5,7 +5,9 @@ import br.com.gabreuw.finances.announcement_search_engine.domain.adapters.reposi
 import br.com.gabreuw.finances.announcement_search_engine.domain.entities.Announcement;
 import br.com.gabreuw.finances.announcement_search_engine.domain.errors.NotFoundAnnouncementsException;
 import br.com.gabreuw.finances.shared.usecase.UseCase;
+import org.springframework.stereotype.Component;
 
+@Component
 public record NotifyLastAnnouncementUseCase(
         AnnouncementRepository announcementRepository,
         AnnouncementProvider announcementProvider
