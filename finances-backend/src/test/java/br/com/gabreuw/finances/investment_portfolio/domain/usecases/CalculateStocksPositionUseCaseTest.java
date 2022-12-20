@@ -1,10 +1,13 @@
 package br.com.gabreuw.finances.investment_portfolio.domain.usecases;
 
+import br.com.gabreuw.finances.investment_portfolio.domain.entities.VariableIncomeAsset;
 import br.com.gabreuw.finances.transactions.variable.income.domain.adapters.repository.InMemoryVariableIncomeTransactionRepository;
 import br.com.gabreuw.finances.transactions.variable.income.domain.adapters.repository.VariableIncomeTransactionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class CalculateStocksPositionUseCaseTest {
 
@@ -23,6 +26,8 @@ class CalculateStocksPositionUseCaseTest {
 
         var output = underTest.execute(input);
 
-        System.out.println(output);
+        assertThat(output.assets())
+                .map(VariableIncomeAsset::getCode)
+                .doesNotHaveDuplicates();
     }
 }
