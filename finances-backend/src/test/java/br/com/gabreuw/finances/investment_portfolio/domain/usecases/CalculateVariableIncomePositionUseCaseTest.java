@@ -26,8 +26,6 @@ class CalculateVariableIncomePositionUseCaseTest {
 
         var output = underTest.execute(input);
 
-        System.out.println(output);
-
         assertThat(output.assets())
                 .map(VariableIncomeAsset::getCode)
                 .doesNotHaveDuplicates();

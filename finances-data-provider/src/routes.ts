@@ -6,6 +6,7 @@ import { RealStateFundFacade } from "./real-state-fund/facade/real-state-fund-fa
 import { BaseError } from "./shared/errors/base-error";
 import { HttpStatus } from "./shared/web/http-status";
 import { StockFacade } from "./stocks/facade/stock-facade";
+import { AssetCurrentPrice } from "./gateways/google/asset-current-price";
 
 export const routes = express.Router();
 
@@ -79,3 +80,22 @@ routes.get(
   }
  },
 );
+
+routes.get(
+  "/currentPrice/:assetCode",
+  async (request: Request, response: Response) => {
+    const { assetCode } = request.params;
+
+    try {
+      const currentPrice = await new AssetCurrentPrice().getAssetCurrentPrice(assetCode);
+
+      return response.json({
+        currentPrice
+      })
+    } catch ({ errorMessage }) {
+      return response.status(HttpStatus.BAD_REQUEST).json({
+        error: errorMessage
+      })
+    }
+  }
+)
