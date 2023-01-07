@@ -1,0 +1,669 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Estrutura de diretórios</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="98572945-6edd-4732-b7fb-ed9bd91941f6" class="page sans"><header><h1 class="page-title">Estrutura de diretórios</h1><table class="properties"><tbody><tr class="property-row property-row-status"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesStatus"><path d="M8.75488 1.02344C8.75488 0.613281 8.41309 0.264648 8.00293 0.264648C7.59277 0.264648 7.25098 0.613281 7.25098 1.02344V3.11523C7.25098 3.51855 7.59277 3.86719 8.00293 3.86719C8.41309 3.86719 8.75488 3.51855 8.75488 3.11523V1.02344ZM3.91504 5.0293C4.20215 5.31641 4.69434 5.32324 4.97461 5.03613C5.26855 4.74902 5.26855 4.25684 4.98145 3.96973L3.53906 2.52051C3.25195 2.2334 2.7666 2.21973 2.47949 2.50684C2.19238 2.79395 2.18555 3.28613 2.47266 3.57324L3.91504 5.0293ZM10.9629 4.01758C10.6826 4.30469 10.6826 4.79688 10.9697 5.08398C11.2568 5.37109 11.749 5.36426 12.0361 5.07715L13.4854 3.62793C13.7725 3.34082 13.7725 2.84863 13.4785 2.55469C13.1982 2.27441 12.7061 2.27441 12.4189 2.56152L10.9629 4.01758ZM15.0234 8.78906C15.4336 8.78906 15.7822 8.44727 15.7822 8.03711C15.7822 7.62695 15.4336 7.28516 15.0234 7.28516H12.9385C12.5283 7.28516 12.1797 7.62695 12.1797 8.03711C12.1797 8.44727 12.5283 8.78906 12.9385 8.78906H15.0234ZM0.975586 7.28516C0.56543 7.28516 0.223633 7.62695 0.223633 8.03711C0.223633 8.44727 0.56543 8.78906 0.975586 8.78906H3.07422C3.48438 8.78906 3.83301 8.44727 3.83301 8.03711C3.83301 7.62695 3.48438 7.28516 3.07422 7.28516H0.975586ZM12.0361 10.9902C11.749 10.71 11.2568 10.71 10.9629 10.9971C10.6826 11.2842 10.6826 11.7764 10.9697 12.0635L12.4258 13.5127C12.7129 13.7998 13.2051 13.793 13.4922 13.5059C13.7793 13.2256 13.7725 12.7266 13.4854 12.4395L12.0361 10.9902ZM2.52051 12.4395C2.22656 12.7266 2.22656 13.2188 2.50684 13.5059C2.79395 13.793 3.28613 13.7998 3.57324 13.5127L5.02246 12.0703C5.31641 11.7832 5.31641 11.291 5.03613 11.0039C4.74902 10.7168 4.25684 10.71 3.96973 10.9971L2.52051 12.4395ZM8.75488 12.9658C8.75488 12.5557 8.41309 12.207 8.00293 12.207C7.59277 12.207 7.25098 12.5557 7.25098 12.9658V15.0576C7.25098 15.4609 7.59277 15.8096 8.00293 15.8096C8.41309 15.8096 8.75488 15.4609 8.75488 15.0576V12.9658Z"></path></svg></span>Progresso</th><td><span class="status-value select-value-color-red"><div class="status-dot status-dot-color-red"></div>Em planejamento</span></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM7.62402 10.6348C7.79492 10.915 8.20508 10.9287 8.37598 10.6348L10.666 6.73145C10.8574 6.41016 10.7002 6.04102 10.3652 6.04102H5.62793C5.29297 6.04102 5.14941 6.43066 5.32031 6.73145L7.62402 10.6348Z"></path></svg></span>Prioridade</th><td><span class="selected-value select-value-color-red">Alto</span></td></tr></tbody></table></header><div class="page-body"><ul id="00a8da88-22e3-47d9-8c83-1622f5ed66fb" class="bulleted-list"><li style="list-style-type:disc">finances-data-provider<ul id="2b9a68cc-fccd-4fc5-9583-afb6abb30bb5" class="bulleted-list"><li style="list-style-type:circle">shared</li></ul><ul id="332f9763-15ec-4abb-8176-c1e5fcd3ad2e" class="toggle"><li><details open=""><summary>stock</summary><ul id="9787a103-5fd7-4be1-87e1-3ec658e0e8d5" class="toggle"><li><details open=""><summary>domain</summary><ul id="99024553-79d0-418b-8986-4a4c7b83d731" class="toggle"><li><details open=""><summary>entities</summary><ul id="9a832c9d-3972-447d-91a4-9355915d2600" class="bulleted-list"><li style="list-style-type:disc">Quotation</li></ul><ul id="60c9ff79-d64e-4f6e-a578-802f971d9d33" class="bulleted-list"><li style="list-style-type:disc">Indicators</li></ul><ul id="da2c6bc8-63ee-45fa-a7da-1fd8daa2b4f6" class="bulleted-list"><li style="list-style-type:disc">GeneralInformations</li></ul><ul id="f21c23d6-3661-43e0-b221-f0acdb12adcf" class="bulleted-list"><li style="list-style-type:disc">CorporativeEvents</li></ul><ul id="792a94a7-573d-46be-a840-8c6e3f29ccab" class="bulleted-list"><li style="list-style-type:disc">News</li></ul><ul id="2be3b0bd-474a-4018-8244-b0ff11a67c35" class="bulleted-list"><li style="list-style-type:disc">Announcement</li></ul><ul id="82f21b59-99af-4ad5-a893-c7e8ef512fdc" class="bulleted-list"><li style="list-style-type:disc">Asset</li></ul></details></li></ul><ul id="efd8c345-718b-4462-9e61-64347ed385c8" class="toggle"><li><details open=""><summary>use-cases</summary><ul id="b7f5b74d-fa23-4ba2-a248-d00a802e308a" class="bulleted-list"><li style="list-style-type:disc">ExtractDayQuotationUseCase</li></ul><ul id="0a9404ad-bc1b-4331-a9f0-6730110476b4" class="bulleted-list"><li style="list-style-type:disc">ExtractFundamentalistIndicatorsUseCase</li></ul><ul id="b4362dcf-b136-4f5d-ad36-78c80f56e6d3" class="bulleted-list"><li style="list-style-type:disc">ExtractGeneralInformationsUseCase</li></ul><ul id="3c74793c-3b0a-4110-ba2e-62f8ad7f7e89" class="bulleted-list"><li style="list-style-type:disc">ExtractCorporativeEventsUseCase</li></ul><ul id="451cc93b-5621-4a21-973d-984e4fa3f4a0" class="bulleted-list"><li style="list-style-type:disc">ExtractNewsUseCase</li></ul><ul id="d8429f8b-8d5d-422d-9b52-7bbb4bd19419" class="bulleted-list"><li style="list-style-type:disc">ExtractAnnouncementsUseCase</li></ul><ul id="7deaf39f-912f-472f-bc84-c8d827a8f5a6" class="bulleted-list"><li style="list-style-type:disc">GetAllInformationUseCase</li></ul></details></li></ul><ul id="2db96daa-2655-4ed9-a18d-141829f1e214" class="toggle"><li><details open=""><summary>adapters</summary><ul id="1b937035-589e-4f6a-81f3-d2d445426e09" class="toggle"><li><details open=""><summary>repositories</summary><ul id="088e91fb-512f-49e1-ab16-ffbc415386f8" class="bulleted-list"><li style="list-style-type:disc">QuotationRepository</li></ul><ul id="c20c8899-6f9a-4d2e-9523-dd91c4bc7656" class="bulleted-list"><li style="list-style-type:disc">IndicatorsRepository</li></ul><ul id="18bbc4cf-6458-4f1c-a191-9a95dd097975" class="bulleted-list"><li style="list-style-type:disc">GeneralInformationRepository</li></ul><ul id="a2f527ad-f312-4d2d-b0b5-ac377047fcc8" class="bulleted-list"><li style="list-style-type:disc">CorporativeEventsRepository</li></ul><ul id="84a9d780-12d5-4dd1-af79-60c753282c90" class="bulleted-list"><li style="list-style-type:disc">NewsRepository</li></ul><ul id="05d96a80-20fd-40d1-a736-155b97e0b8c7" class="bulleted-list"><li style="list-style-type:disc">AnnouncementRepository</li></ul></details></li></ul><ul id="bbde2898-91ca-4d7e-a520-fcae8b961813" class="toggle"><li><details open=""><summary>mappers</summary><ul id="8d6dc033-c495-4aaa-97a4-7d5af2985698" class="bulleted-list"><li style="list-style-type:disc">QuotationMapper</li></ul><ul id="24976bc4-ccdf-491b-9312-fdc4ad8c546b" class="bulleted-list"><li style="list-style-type:disc">IndicatorMapper</li></ul><ul id="669760c9-4540-4f93-885c-a008ff58e147" class="bulleted-list"><li style="list-style-type:disc">GeneralInformationMapper</li></ul><ul id="a346da72-32d8-48fd-b315-79674becbcfb" class="bulleted-list"><li style="list-style-type:disc">CorporativeEventsMapper</li></ul><ul id="4af45bed-49f0-409a-b5d2-5d5574697c82" class="bulleted-list"><li style="list-style-type:disc">NewsMapper</li></ul><ul id="c0f87235-ff57-4071-aa98-49294310945b" class="bulleted-list"><li style="list-style-type:disc">AnnouncementMapper</li></ul><ul id="da142999-b4b7-46b9-b356-a95d7a37bb4d" class="bulleted-list"><li style="list-style-type:disc">AssetMapper</li></ul></details></li></ul><ul id="d298c6eb-278e-456e-a261-8f0f7bb6aa29" class="toggle"><li><details open=""><summary>scrappers</summary><ul id="dfbb8bd2-d809-4cfb-8e2e-47aba8710ade" class="bulleted-list"><li style="list-style-type:disc">PuppeteerWebScrapper</li></ul></details></li></ul></details></li></ul></details></li></ul><ul id="46614b19-e9c0-4690-b99c-0f3adc1e9254" class="toggle"><li><details open=""><summary>application</summary><ul id="9678bbc5-f60c-4097-affa-00c33e0fccb2" class="toggle"><li><details open=""><summary>http</summary><ul id="29e925a7-0c5f-4f4c-83a7-f1511feb4559" class="toggle"><li><details open=""><summary>dto</summary><ul id="14dbda01-cf37-4779-a5d0-c7bc98baaa88" class="bulleted-list"><li style="list-style-type:disc">response</li></ul><ul id="76599af6-121c-405e-9091-5a0edeae889a" class="bulleted-list"><li style="list-style-type:disc">request</li></ul></details></li></ul><ul id="8ce0937b-2044-44cd-b7e0-094f3d3199c1" class="bulleted-list"><li style="list-style-type:disc">resources</li></ul></details></li></ul><ul id="50c31c83-fe71-4232-818e-4c04703958e9" class="toggle"><li><details open=""><summary>database</summary><ul id="30288626-0112-466a-8891-bdc0f8e6c33e" class="bulleted-list"><li style="list-style-type:disc">entities</li></ul><ul id="29a49048-5a64-4ba1-bcbf-c0491b7c42f3" class="bulleted-list"><li style="list-style-type:disc">jpa</li></ul><ul id="5a469dee-f66f-45aa-99fb-4be225bb6295" class="bulleted-list"><li style="list-style-type:disc">repository</li></ul></details></li></ul><ul id="d50694c4-44a2-43e9-b1bb-bb5fdd1536b3" class="toggle"><li><details open=""><summary>gateway</summary><ul id="bc445fc7-5680-4460-a387-58f43f252682" class="bulleted-list"><li style="list-style-type:disc">status-invest (application service)</li></ul></details></li></ul></details></li></ul></details></li></ul><ul id="e87aa5b7-5f24-425e-859a-d66a126ec5f1" class="toggle"><li><details open=""><summary>real-state-fund</summary><ul id="6a6df25c-4d5e-44d7-b214-3fd643fc9f79" class="toggle"><li><details open=""><summary>domain</summary><ul id="f2f7a03f-d8bf-48dc-a2e6-d79540c00d74" class="toggle"><li><details open=""><summary>entities</summary><ul id="ce0d52d7-7c01-4c00-9a3f-ca277055e6a8" class="bulleted-list"><li style="list-style-type:disc">quotation</li></ul><ul id="1181b968-4620-4a00-b319-476841da04ef" class="bulleted-list"><li style="list-style-type:disc">indicators</li></ul><ul id="a8cdebf1-c2eb-4f94-8a3b-36b632b313c4" class="bulleted-list"><li style="list-style-type:disc">general-information</li></ul><ul id="d1156bbb-1ba0-451e-a19e-12e4ae153604" class="bulleted-list"><li style="list-style-type:disc">news</li></ul><ul id="cd7bf7b5-b986-4c4c-8b0f-1215f92a9e53" class="bulleted-list"><li style="list-style-type:disc">announcement</li></ul></details></li></ul><ul id="f82f0f33-046d-4a52-a194-6b282f480253" class="toggle"><li><details open=""><summary>use-cases</summary><ul id="26b6e113-d957-4178-a849-1d6f66fd0811" class="bulleted-list"><li style="list-style-type:disc">extract-stock-quotation</li></ul><ul id="d92f4a71-209e-44df-bec7-7c51beccb2d3" class="bulleted-list"><li style="list-style-type:disc">extract-stock-indicator</li></ul><ul id="7f26a6bc-1909-4092-8ebc-2b2b29e70ee7" class="bulleted-list"><li style="list-style-type:disc">extract-stock-general-information</li></ul><ul id="efe3aaac-7b5c-4111-b0eb-f1106c3df75d" class="bulleted-list"><li style="list-style-type:disc">extract-stock-news</li></ul><ul id="804ccc82-5451-4d62-a41c-e7ad0c5228e1" class="bulleted-list"><li style="list-style-type:disc">extract-stock-announcement</li></ul></details></li></ul><ul id="5f5d5f8e-bbe4-402c-ac81-29846b73be13" class="toggle"><li><details open=""><summary>adapters</summary><ul id="2e3099b5-4040-4ce3-8249-7fb5e27aabac" class="toggle"><li><details open=""><summary>repositories</summary><ul id="46fc8a23-1072-4634-9d48-0a589085ef4e" class="bulleted-list"><li style="list-style-type:disc">quotation-repository</li></ul><ul id="6f9fec9b-95b4-4cf0-beff-2b50620a818c" class="bulleted-list"><li style="list-style-type:disc">indicators-repository</li></ul><ul id="38dbbdba-4e1e-4257-928e-ac8ed3062229" class="bulleted-list"><li style="list-style-type:disc">general-information-repository</li></ul><ul id="0fb9c3da-3bde-4ba6-a1a5-4032b0b90e74" class="bulleted-list"><li style="list-style-type:disc">news-repository</li></ul><ul id="24dbd200-590a-47cb-bf2f-90861532143a" class="bulleted-list"><li style="list-style-type:disc">announcement-repository</li></ul></details></li></ul><ul id="3c631ed7-2e2f-4c2f-9421-1efaf97e6baa" class="toggle"><li><details open=""><summary>mappers</summary><ul id="5f48e558-e188-45a7-86a6-3ef1dcfcfac7" class="bulleted-list"><li style="list-style-type:disc">quotation-mapper</li></ul><ul id="9a2cc97f-3123-4313-b546-3b4cc79576f8" class="bulleted-list"><li style="list-style-type:disc">indicator-mapper</li></ul><ul id="8ba3d4eb-c595-4f99-8764-1ea7a697cfeb" class="bulleted-list"><li style="list-style-type:disc">general-information-mapper</li></ul><ul id="0d00a9e0-bba4-4a95-b1b3-d07a04eb6cbb" class="bulleted-list"><li style="list-style-type:disc">news-mapper</li></ul><ul id="6dc5ca46-03a4-49bb-96fb-999f0801017d" class="bulleted-list"><li style="list-style-type:disc">announcement-mapper</li></ul></details></li></ul><ul id="04f28e43-6692-4d7b-8fd3-3b0188df84f5" class="toggle"><li><details open=""><summary>scrappers</summary><ul id="02972a73-7f77-439b-9833-bdf0300b4b4c" class="bulleted-list"><li style="list-style-type:disc">puppeteer-scrapper</li></ul></details></li></ul></details></li></ul></details></li></ul><ul id="cd379677-24df-4199-b824-83373ad36e58" class="toggle"><li><details open=""><summary>application</summary><ul id="5a716a61-9f88-49e4-bd62-0d4eff848b3c" class="toggle"><li><details open=""><summary>http</summary><ul id="f5e48fb3-b73b-4ad0-a16f-bf9c6d338fab" class="toggle"><li><details open=""><summary>dto</summary><ul id="dab58bce-fc8b-424f-a387-b7eb15fd17a8" class="bulleted-list"><li style="list-style-type:disc">response</li></ul><ul id="061eba42-0392-4839-9480-ca081d014023" class="bulleted-list"><li style="list-style-type:disc">request</li></ul></details></li></ul><ul id="f1403e83-1c60-4578-9d45-bb0b777a8fd4" class="bulleted-list"><li style="list-style-type:disc">resources</li></ul></details></li></ul><ul id="7c169ad6-81de-4891-9f56-00a2e3c2576d" class="toggle"><li><details open=""><summary>database</summary><ul id="964a9820-4ae2-4b3c-82de-8d6701470c95" class="bulleted-list"><li style="list-style-type:disc">entities</li></ul><ul id="d501e41e-8a76-4a9f-b877-2735b77428af" class="bulleted-list"><li style="list-style-type:disc">jpa</li></ul><ul id="a9ba5289-9020-4dcd-b65a-d81f4b2a6979" class="bulleted-list"><li style="list-style-type:disc">repository</li></ul></details></li></ul><ul id="60a4f9f2-f12c-406b-b54f-2a83b88b63e8" class="toggle"><li><details open=""><summary>gateway</summary><ul id="143b0d44-4f47-4992-97ba-9f9299cb7812" class="bulleted-list"><li style="list-style-type:disc">status-invest</li></ul></details></li></ul></details></li></ul></details></li></ul><ul id="9c64819e-c48a-488b-83ae-8eb40f5def32" class="toggle"><li><details open=""><summary>etf</summary><ul id="2aef5768-a52d-480e-abe3-fbc99b81f54b" class="toggle"><li><details open=""><summary>domain</summary><ul id="5c16ff31-2636-425c-9a01-0629e7c8ac41" class="toggle"><li><details open=""><summary>entities</summary><ul id="7a5a8a9e-c9ac-4ff8-ae17-20124213f319" class="bulleted-list"><li style="list-style-type:disc">quotation</li></ul><ul id="ef85fc91-e118-4145-be7d-e4a2eb71dd94" class="bulleted-list"><li style="list-style-type:disc">indicators</li></ul><ul id="279addd1-a62a-44a9-a6b5-1d49ffc209ca" class="bulleted-list"><li style="list-style-type:disc">general-information</li></ul><ul id="3e400f5e-3436-4b7b-810c-e28743212266" class="bulleted-list"><li style="list-style-type:disc">news</li></ul><ul id="d79bc50e-6af8-4024-b4da-baaf065d5347" class="bulleted-list"><li style="list-style-type:disc">announcement</li></ul></details></li></ul><ul id="62e337f7-29de-4f6a-a59b-6592297734dc" class="toggle"><li><details open=""><summary>use-cases</summary><ul id="0b14eac3-b74b-4216-bb03-96db4bf0af3e" class="bulleted-list"><li style="list-style-type:disc">extract-stock-quotation</li></ul><ul id="6bfac786-74de-46a7-aef3-3833a27835d1" class="bulleted-list"><li style="list-style-type:disc">extract-stock-indicator</li></ul><ul id="c48f33f3-8769-4bbc-af70-274037ae43e1" class="bulleted-list"><li style="list-style-type:disc">extract-stock-general-information</li></ul><ul id="82a26040-e43d-416b-a385-c051e678934f" class="bulleted-list"><li style="list-style-type:disc">extract-stock-news</li></ul><ul id="4bd1f6b5-15ac-4f0c-83f5-f8454eaa0ee1" class="bulleted-list"><li style="list-style-type:disc">extract-stock-announcement</li></ul></details></li></ul><ul id="5875f760-3a92-4a7b-91cf-6e5d1da38972" class="toggle"><li><details open=""><summary>adapters</summary><ul id="cf1c99cf-7f01-4899-a547-6d5e2b167e7d" class="toggle"><li><details open=""><summary>repositories</summary><ul id="ea14bca7-e51b-4ca9-8aba-1d3593a59420" class="bulleted-list"><li style="list-style-type:disc">quotation-repository</li></ul><ul id="ac5ece5b-2ca1-4aa3-8108-dd861895acc4" class="bulleted-list"><li style="list-style-type:disc">indicators-repository</li></ul><ul id="c9ba51a1-51f5-4e80-b210-e1d5f5f2f63a" class="bulleted-list"><li style="list-style-type:disc">general-information-repository</li></ul><ul id="9ffee9ad-17bf-4eec-9290-930840bc8c52" class="bulleted-list"><li style="list-style-type:disc">news-repository</li></ul><ul id="8813320f-b15b-4f13-be96-9bf8e82a4866" class="bulleted-list"><li style="list-style-type:disc">announcement-repository</li></ul></details></li></ul><ul id="26779b40-4b7f-4722-9fa0-8d05efd1996b" class="toggle"><li><details open=""><summary>mappers</summary><ul id="a83c3642-7859-48a8-bb82-9110ed67dbfd" class="bulleted-list"><li style="list-style-type:disc">quotation-mapper</li></ul><ul id="f0f339ad-f547-436c-b7cd-393ce5f8f23d" class="bulleted-list"><li style="list-style-type:disc">indicator-mapper</li></ul><ul id="cafe5bcb-c048-4a28-91a8-a6b85c065b6a" class="bulleted-list"><li style="list-style-type:disc">general-information-mapper</li></ul><ul id="4f4f5dfb-444c-4527-80de-08e4de840d3f" class="bulleted-list"><li style="list-style-type:disc">news-mapper</li></ul><ul id="31527570-3ec7-44d9-9260-07dbbdb28abd" class="bulleted-list"><li style="list-style-type:disc">announcement-mapper</li></ul></details></li></ul><ul id="9f3370b5-7aad-4583-92bd-bb6a3f8f413d" class="toggle"><li><details open=""><summary>scrappers</summary><ul id="03906f50-8d61-4830-8406-985227723ac8" class="bulleted-list"><li style="list-style-type:disc">puppeteer-scrapper</li></ul></details></li></ul></details></li></ul></details></li></ul><ul id="eb74cb89-2ee4-484f-b75b-ea9267112ed2" class="toggle"><li><details open=""><summary>application</summary><ul id="a4d6349a-cf8b-4ae8-b0d9-cf0e157237e5" class="toggle"><li><details open=""><summary>http</summary><ul id="c8204218-d4bf-4850-8fff-6a75389aa2cd" class="toggle"><li><details open=""><summary>dto</summary><ul id="0caf6d54-f0de-4861-a67e-6db07c97b607" class="bulleted-list"><li style="list-style-type:disc">response</li></ul><ul id="b0354cc0-a5fc-4b0c-893e-6c54fe3b5e3e" class="bulleted-list"><li style="list-style-type:disc">request</li></ul></details></li></ul><ul id="5205b095-9d2e-4597-8212-34be2dd8ab04" class="bulleted-list"><li style="list-style-type:disc">resources</li></ul></details></li></ul><ul id="58f30221-500f-4019-8d90-9bedf5f8c03e" class="toggle"><li><details open=""><summary>database</summary><ul id="c602a8bb-ea41-43b9-99c4-4ddd7aa06239" class="bulleted-list"><li style="list-style-type:disc">entities</li></ul><ul id="10e7703d-1140-4824-a60b-0bd04fecab50" class="bulleted-list"><li style="list-style-type:disc">jpa</li></ul><ul id="8f9a9560-2659-46e2-b443-29636e426880" class="bulleted-list"><li style="list-style-type:disc">repository</li></ul></details></li></ul><ul id="18437f62-ebdb-4dce-90bf-4c459df9fbed" class="toggle"><li><details open=""><summary>gateway</summary><ul id="25576cd2-f9d7-409c-af90-e38f6c98077a" class="bulleted-list"><li style="list-style-type:disc">status-invest</li></ul></details></li></ul></details></li></ul></details></li></ul></li></ul></div></article></body></html>

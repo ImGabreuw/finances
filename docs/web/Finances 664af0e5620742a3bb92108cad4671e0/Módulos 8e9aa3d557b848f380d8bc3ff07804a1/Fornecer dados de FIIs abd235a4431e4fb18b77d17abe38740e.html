@@ -1,0 +1,1025 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Fornecer dados de FIIs</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="abd235a4-431e-4fb1-8b77-d17abe38740e" class="page sans"><header><h1 class="page-title">Fornecer dados de FIIs</h1><table class="properties"><tbody><tr class="property-row property-row-status"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesStatus"><path d="M8.75488 1.02344C8.75488 0.613281 8.41309 0.264648 8.00293 0.264648C7.59277 0.264648 7.25098 0.613281 7.25098 1.02344V3.11523C7.25098 3.51855 7.59277 3.86719 8.00293 3.86719C8.41309 3.86719 8.75488 3.51855 8.75488 3.11523V1.02344ZM3.91504 5.0293C4.20215 5.31641 4.69434 5.32324 4.97461 5.03613C5.26855 4.74902 5.26855 4.25684 4.98145 3.96973L3.53906 2.52051C3.25195 2.2334 2.7666 2.21973 2.47949 2.50684C2.19238 2.79395 2.18555 3.28613 2.47266 3.57324L3.91504 5.0293ZM10.9629 4.01758C10.6826 4.30469 10.6826 4.79688 10.9697 5.08398C11.2568 5.37109 11.749 5.36426 12.0361 5.07715L13.4854 3.62793C13.7725 3.34082 13.7725 2.84863 13.4785 2.55469C13.1982 2.27441 12.7061 2.27441 12.4189 2.56152L10.9629 4.01758ZM15.0234 8.78906C15.4336 8.78906 15.7822 8.44727 15.7822 8.03711C15.7822 7.62695 15.4336 7.28516 15.0234 7.28516H12.9385C12.5283 7.28516 12.1797 7.62695 12.1797 8.03711C12.1797 8.44727 12.5283 8.78906 12.9385 8.78906H15.0234ZM0.975586 7.28516C0.56543 7.28516 0.223633 7.62695 0.223633 8.03711C0.223633 8.44727 0.56543 8.78906 0.975586 8.78906H3.07422C3.48438 8.78906 3.83301 8.44727 3.83301 8.03711C3.83301 7.62695 3.48438 7.28516 3.07422 7.28516H0.975586ZM12.0361 10.9902C11.749 10.71 11.2568 10.71 10.9629 10.9971C10.6826 11.2842 10.6826 11.7764 10.9697 12.0635L12.4258 13.5127C12.7129 13.7998 13.2051 13.793 13.4922 13.5059C13.7793 13.2256 13.7725 12.7266 13.4854 12.4395L12.0361 10.9902ZM2.52051 12.4395C2.22656 12.7266 2.22656 13.2188 2.50684 13.5059C2.79395 13.793 3.28613 13.7998 3.57324 13.5127L5.02246 12.0703C5.31641 11.7832 5.31641 11.291 5.03613 11.0039C4.74902 10.7168 4.25684 10.71 3.96973 10.9971L2.52051 12.4395ZM8.75488 12.9658C8.75488 12.5557 8.41309 12.207 8.00293 12.207C7.59277 12.207 7.25098 12.5557 7.25098 12.9658V15.0576C7.25098 15.4609 7.59277 15.8096 8.00293 15.8096C8.41309 15.8096 8.75488 15.4609 8.75488 15.0576V12.9658Z"></path></svg></span>Progresso</th><td><span class="status-value select-value-color-orange"><div class="status-dot status-dot-color-orange"></div>Pronto para desenvolvimento</span></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM7.62402 10.6348C7.79492 10.915 8.20508 10.9287 8.37598 10.6348L10.666 6.73145C10.8574 6.41016 10.7002 6.04102 10.3652 6.04102H5.62793C5.29297 6.04102 5.14941 6.43066 5.32031 6.73145L7.62402 10.6348Z"></path></svg></span>Prioridade</th><td><span class="selected-value select-value-color-yellow">Médio</span></td></tr></tbody></table></header><div class="page-body"><h2 id="fa117231-bd09-4556-818c-3d4191b1e809" class="">Funcionalidades</h2><p id="a3528218-5a90-4886-b959-c0b3a4b79452" class="">Fornecer dados para outras APIs de um determinado FII:</p><ul id="e81fda19-755a-4f3e-b61d-9f0619da74b8" class="toggle"><li><details open=""><summary>Cotação</summary><ul id="0319233e-0baf-4c96-9774-adc304e67b20" class="bulleted-list"><li style="list-style-type:disc">Fornecer as informações da cotação (atualizar a cada 5 min)</li></ul></details></li></ul><ul id="989c353b-ce82-4784-b818-6905d94c36f9" class="toggle"><li><details open=""><summary>Indicadores</summary><ul id="27d28986-68ba-4223-a2b2-6497e673fe42" class="bulleted-list"><li style="list-style-type:disc">Fornecer os indicadores do ativo (atualizar a cada semana)</li></ul></details></li></ul><ul id="2b29dc81-6c37-4163-96d1-5f2f7cf7b254" class="toggle"><li><details open=""><summary>Informações gerais</summary><ul id="43b898c4-59ee-4dcf-8786-349e7d241db3" class="bulleted-list"><li style="list-style-type:disc">Fornecer as informações gerais do ativo (atualizar a cada semana):</li></ul></details></li></ul><ul id="6099fe19-65a4-4034-9821-dabbd4cd8916" class="toggle"><li><details open=""><summary>Eventos corporativos</summary><ul id="0e3a20ee-1fa2-4604-883d-c484abad0654" class="bulleted-list"><li style="list-style-type:disc">Dividendos<ul id="13298bbb-43b2-4d47-86c1-f517c389b013" class="bulleted-list"><li style="list-style-type:circle">Fornecer os dados do último dividendo</li></ul><ul id="10e9a824-68d3-4d2c-bff4-e7f1cc3e3c8d" class="bulleted-list"><li style="list-style-type:circle">Obter próximo dividendo</li></ul><ul id="244366d3-06b2-4806-9917-84aa06bd898f" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow_background">Obter o histórico de dividendos</mark><ul id="c1bf02e6-50aa-4d87-8f4d-9d8c27c9ebdb" class="bulleted-list"><li style="list-style-type:square"><mark class="highlight-yellow_background">Obter os dividendos pagos no ano anterior</mark></li></ul><ul id="2d91090f-0c26-43b6-ad0d-758bd81800f4" class="bulleted-list"><li style="list-style-type:square"><mark class="highlight-yellow_background">Obter os dividendos pagos no ano atual</mark></li></ul><ul id="faee6eb8-e7cc-4b73-9511-e11b4e60d205" class="bulleted-list"><li style="list-style-type:square"><mark class="highlight-yellow_background">Fornecer a comparação dos dividendos pagos entre o ano atual e o anterior</mark></li></ul></li></ul></li></ul><ul id="df72d72a-6af5-4f17-919f-fd97d8cd90b8" class="bulleted-list"><li style="list-style-type:disc">Subscrição<ul id="8a6d2ad7-03c6-4d6a-936f-e06fd0476a5c" class="bulleted-list"><li style="list-style-type:circle">Obter os dados da última subscrição</li></ul></li></ul></details></li></ul><ul id="23d64542-ad8f-4707-9f23-c999044c704e" class="toggle"><li><details open=""><summary>Portfólio</summary><ul id="2c891b33-fa2a-4032-a518-290ed19ee15b" class="bulleted-list"><li style="list-style-type:disc">Imóveis<ul id="4752b4bd-f463-465b-be28-f1e648188dfd" class="bulleted-list"><li style="list-style-type:circle">Listagem de todos os imóveis de um ativo</li></ul></li></ul><ul id="7f741262-6536-4f9b-b277-a2598b81721d" class="bulleted-list"><li style="list-style-type:disc">FIIs<ul id="40d26a38-1253-4c81-aae8-2353ca759897" class="bulleted-list"><li style="list-style-type:circle">Listagem dos FIIs do portfolio de um ativo</li></ul></li></ul></details></li></ul><ul id="792f8a34-26cb-4650-a148-fec058975e37" class="toggle"><li><details open=""><summary>Notícias</summary><ul id="be039e58-95e7-46fe-a2b8-bf99023e1111" class="bulleted-list"><li style="list-style-type:disc">Listagem de todas as notícias de um ativo</li></ul><ul id="e089f316-0a16-4e40-9c65-cde6292a2e10" class="bulleted-list"><li style="list-style-type:disc">Obter notícias a partir de palavras-chave do titulo ou o título completo</li></ul><ul id="21d2a3ad-689f-4375-a34f-f451eacecdab" class="bulleted-list"><li style="list-style-type:disc">Listagem das notícias com data de publicação entre um intervalo de datas</li></ul></details></li></ul><ul id="cc02af9a-36fe-4227-9940-e097c9b6701a" class="toggle"><li><details open=""><summary>Comunicados</summary><ul id="e6b55846-648d-4d26-a711-ad1773014ba7" class="bulleted-list"><li style="list-style-type:disc">Listagem de todos os comunicados de um ativo</li></ul><ul id="6deafb15-579d-47ca-858b-be60f48e076b" class="bulleted-list"><li style="list-style-type:disc">Obter o último comunicado de um ativo</li></ul><ul id="551cab48-077a-44fe-8cf4-d830a2981c93" class="bulleted-list"><li style="list-style-type:disc">Obter comunicados a partir de palavras-chave do título ou o título completo</li></ul><ul id="17a15a64-9980-42a6-8ac5-e32c2bfe0bbc" class="bulleted-list"><li style="list-style-type:disc">Obter comunicados com data de publicação entre um intervalo de datas de um ativo</li></ul></details></li></ul><h2 id="cddd70e8-3be7-417e-807b-ed00ba852170" class="">Entidades</h2><ul id="d7712f6e-3e79-43a8-8140-07bdbc7256bf" class="toggle"><li><details open=""><summary>Cotação</summary><pre id="9c3a90f3-1e14-47d2-ab80-1118b6f5e7fe" class="code"><code>classDiagram
+
+class Cotacao {
+	- codigoDoAtivo: string
+	- dataEHoraBase: Date
+	- preco: double
+	- variacao: double
+}</code></pre></details></li></ul><ul id="20b77e94-e94b-407f-a3e4-c11e6a72a8ba" class="toggle"><li><details open=""><summary>Indicadores</summary><pre id="4dc22c39-e4c3-4fe1-93a0-3a770579adf9" class="code"><code>classDiagram
+
+class Indicadores {
+	- codigoDoAtivo: string
+	- dataBase: Date
+	- precoMinimoDoMes: double
+	- precoMinimoDoAno: double
+	- precoMaximoDoMes: double
+	- precoMinimoDoAno: double
+	- dividendYieldUltimos12meses: double
+	- valorPatrimonialPorCota: double
+	- p/vp: double
+	- valorEmCaixa: double
+	- dividendYieldCAGRUltimos3Anos: double
+	- dividendYieldCAGRUltimos5Anos: double
+	- valorCAGRUltimos3Anos: double
+	- valorCAGRUltimos5Anos: double
+	- numeroDeCotistas: long
+	- numeroDeCotas: long
+	- rendimentoMedioUltimos2Anos: double
+	- taxaDeAdministração: double
+	- liquidezMediaDiariaUltimos30Dias: double
+	- participacaoNoIFIX: double
+}</code></pre></details></li></ul><ul id="9accdfc0-c4a8-4e1a-a400-4511ed9df525" class="toggle"><li><details open=""><summary>Informações gerais</summary><pre id="f8d31d73-fe4e-4299-b86d-fbb78d2af273" class="code"><code>classDiagram
+
+InformacoesGerais &lt;-- PrazoDeDuracao 
+InformacoesGerais &lt;-- TipoDeGestao 
+InformacoesGerais &lt;-- PublicoAlvo 
+InformacoesGerais &lt;--* InformacoesAdministrador 
+
+class InformacoesGerais {
+	- codigoDoAtivo: string
+	- dataBase: Date
+	- nomeNoPregao: string
+	- dataDeInicioDoFundo: Date
+	- prazoDeDuracao: PrazoDeDuracao
+	- tipoANBIMA: string
+	- administrador: InformacoesAdministrador
+	- segmento: string
+	- tipoDeGestao: TipoDeGestao
+	- publicaAlvo: PublicoAlvo
+}
+
+class PrazoDeDuracao {
+	&lt;&lt;enumeration&gt;&gt;
+	INDETERMINADO
+	DETERMINADO
+}
+
+class InformacoesAdministrador {
+	- nome: string
+	- email: string
+	- site: string
+}
+
+class TipoDeGestao {
+	&lt;&lt;enumeration&gt;&gt;
+	ATIVA
+	PASSIVA
+}
+
+class PublicoAlvo {
+	&lt;&lt;enumeration&gt;&gt;
+	INVESTIDOR_EM_GERAL
+	INVESTIDOR_QUALIFICADO
+}</code></pre></details></li></ul><ul id="68d91780-8f32-4c5d-9713-aa87bddcf23b" class="toggle"><li><details open=""><summary>Eventos corporativos</summary><pre id="64999782-e8b3-40b7-8c24-e41f19b3771f" class="code"><code>classDiagram
+
+class Dividendo {
+	- codigoDoAtivo: string
+	- dataBase: Date
+	- ultimoDividendo: boolean
+	- proximoDividendo: boolean
+	- dataCom: Date
+	- dataDePagamento: Date
+	- valor: double
+}
+
+class Subscricao {
+	- codigoDoAtivo: string
+	- dataCom: Date
+	- ultimaSubscricao: boolean
+	- dataDeNegociacao: Date
+	- valorBase: double
+	- percentual: double
+	- ativoEmitido: string
+}</code></pre></details></li></ul><ul id="60bcbd73-5f2d-4a13-92c5-5c5ca75db9b4" class="toggle"><li><details open=""><summary>Portfolio</summary><pre id="c55de721-9ca5-4d59-9ebf-343e99c0a092" class="code"><code>classDiagram
+
+Portfolio &lt;--* Imovel 
+Portfolio &lt;--* Fii
+Imovel &lt;-- Objetivo 
+Imovel &lt;--* Localizacao 
+
+class Portfolio {
+	- codigoDoAtivo: string
+	- imoveis: Array~Imovel~
+	- fiis: Array~Fii~
+}
+
+class Imovel {
+	- codigoDoAtivoDoDono: string
+	- dataBase: Date
+	- objetivo: Objetivo
+	- abl: long
+	- localizacao: Localizacao
+	- vacancia: double
+	- inadimplencia: double
+}
+
+class Objetivo {
+	&lt;&lt;enumeration&gt;&gt;
+	RENDA
+	ALIENACAO
+}
+
+class Localizacao {
+	- cidade: string
+	- estado: string
+}
+
+class Fii {
+	- codigoDoAtivoDoDono: string
+	- codigoDoAtivo: string
+	- segmento: string
+	- numeroDeCotas: long
+	- representacaoDoPL: double
+}</code></pre></details></li></ul><ul id="cfaf9754-b582-4b17-8bcf-f09b542d0277" class="toggle"><li><details open=""><summary>Noticias</summary><pre id="5e8c798b-29e6-4f53-b953-f29b09273f8c" class="code"><code>classDiagram
+
+class Noticia {
+	- codigoDoAtivo: string
+	- dataBase: Date
+	- titulo: string
+	- dataEHoraDepublicacao: Date
+	- url: string
+}</code></pre></details></li></ul><ul id="51156883-4289-4804-9bb1-d7b72a2423cb" class="toggle"><li><details open=""><summary>Comunicado</summary><pre id="b6218027-7068-4719-a05c-ac73b61f386a" class="code"><code>classDiagram
+
+class Comunicado {
+	- codigoDoAtivo: string
+	- dataBase: Date
+	- ultimoComunicado: boolean
+	- titulo: string
+	- dataDePublicacao: Date
+	- urlDeDownload: string
+}</code></pre></details></li></ul><h2 id="fb73a60b-1a2c-4c9f-a513-2eef6ccd959c" class="">Casos de uso</h2><ul id="af4c1d4d-a21e-4e41-ac9a-f2733428e4c0" class="toggle"><li><details open=""><summary>Obter a cotação do dia</summary><ol type="1" id="342bd282-e884-469f-9708-86b7f46b4cdf" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="9116bca6-72af-4cd2-91c1-30bf80e67fc1" class="code"><code>GET http://localhost:3000/real_state_fund/quotation/{assetCode}</code></pre></li></ol><ol type="1" id="defacc86-23df-49bb-afa2-607025a0881e" class="numbered-list" start="2"><li>Execução do processo de extração de dados<ol type="a" id="a2036ee7-f453-4e72-9dc7-a5881c932ee6" class="numbered-list" start="1"><li>Recuperar a cotação no banco de dados via propriedade <code>codigoDoAtivo</code></li></ol><ol type="a" id="2bcbd775-5042-46c4-b68b-9cfecfa4f461" class="numbered-list" start="2"><li>Se a diferença da data e hora atual e o valor da propriedade <code>dataEHoraBase</code> for menor do que 5 min, então retornar essa cotação</li></ol><ol type="a" id="369c1ffe-68c5-46fe-81af-72788de5748e" class="numbered-list" start="3"><li>Caso contrário extrair os dados da cotação no <em>Google Finances</em><ol type="i" id="1c229a6f-de4b-4a0e-b716-daf18ffab193" class="numbered-list" start="1"><li>Definir a propriedade <code>dataEHoraBase</code> com o valor da data e hora atual</li></ol><ol type="i" id="47d3472d-6816-461f-8d1b-93b6d7468144" class="numbered-list" start="2"><li>Tratar os dados coletados no Google Finances</li></ol><ol type="i" id="b515812b-6140-4255-8f96-69ad71ef57da" class="numbered-list" start="3"><li>Salvá-los no banco de dados</li></ol></li></ol></li></ol><ol type="1" id="1f135fda-a43b-4773-9724-f665ff192d5d" class="numbered-list" start="3"><li>Envio de um resposta para o cliente no seguinte formato:<pre id="e1ef26eb-f213-4a94-a5a5-047541c23d70" class="code"><code>{
+	&quot;código do ativo&quot;: ...,
+	&quot;data base&quot;: &quot;yyyy-MM-dd&quot;,
+	&quot;preço atual&quot;: ...,
+	&quot;variação atual em porcentagem&quot;: ...,
+}</code></pre></li></ol></details></li></ul><ul id="be380fce-0039-45d3-acb2-4f2ea7f51194" class="toggle"><li><details open=""><summary>Obter os indicadores de um ativo</summary><ol type="1" id="462b6ada-d0d0-4cb3-a0f9-170ce9e12606" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="08d963b8-a419-434f-84c7-322b5d06c720" class="code"><code>GET http://localhost:3000/real_state_fund/indicators/{assetCode}</code></pre></li></ol><ol type="1" id="c12042b3-b826-4e49-ab5d-9c12ac019494" class="numbered-list" start="2"><li>Execução do processo de extração de dados<ol type="a" id="7e5f4925-5131-41dd-8879-c1457ea226d6" class="numbered-list" start="1"><li>Recuperar os indicadores no banco de dados via propriedade <code>codigoDoAtivo</code></li></ol><ol type="a" id="f1113805-cb89-4880-9db0-6f0ecd43d5f0" class="numbered-list" start="2"><li>Se a diferença da data atual e o valor da propriedade <code>dataBase</code> for menor do que 1 semana, então retornar os dados do banco de dados</li></ol><ol type="a" id="ee13260f-8740-4189-9b8f-f7128af30a3e" class="numbered-list" start="3"><li>Caso contrário extrair os indicadores do ativo no <em>Status Invest</em><ol type="i" id="18636cf3-87c9-47cb-b65b-de5e3fa96b0d" class="numbered-list" start="1"><li>Definir a propriedade <code>dataBase</code> com o valor da data atual</li></ol><ol type="i" id="e37293c7-594b-4153-9482-683451a70405" class="numbered-list" start="2"><li>Tratar os dados coletados no Status Invest</li></ol><ol type="i" id="ea190b93-f553-4e95-9bd6-d3c3d3eafb58" class="numbered-list" start="3"><li>Salvá-los no banco de dados</li></ol></li></ol></li></ol><ol type="1" id="09fa16fb-7568-4563-8f0c-7efcb4375db4" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="cc13aff2-7837-4364-8775-3ce04dd38998" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;data base&quot;: &quot;yyyy-MM-dd&quot;,
+	&quot;indicadores&quot;: {
+		// ...
+	}
+}</code></pre><ul id="1968aeef-67e2-4e14-b368-a40ddabdddf9" class="toggle"><li><details open=""><summary><mark class="highlight-yellow_background">Atualização futura</mark></summary><pre id="e52a8b52-0f0b-45c2-94ee-cc359d3a4b3b" class="code"><code>{
+	&quot;código do ativo&quot;: ...,
+	&quot;indicadores de valuation&quot;: {
+		&quot;atual&quot;: {
+			// ...
+		},
+		&quot;histórico&quot;: [
+			{
+				&quot;ano&quot;: &quot;2021&quot;,
+				// ...
+			}	
+		],
+	},
+	&quot;indicadores de endividamento&quot;: {
+		&quot;atual&quot;: {
+			// ...
+		},
+		&quot;histórico&quot;: [
+			{
+				&quot;ano&quot;: &quot;2021&quot;,
+				// ...
+			}	
+		],
+	},
+	&quot;indicadores de eficiência&quot;: {
+		&quot;atual&quot;: {
+			// ...
+		},
+		&quot;histórico&quot;: [
+			{
+				&quot;ano&quot;: &quot;2021&quot;,
+				// ...
+			}	
+		],
+	},
+	&quot;indicadores de rentabilidade&quot;: {
+		&quot;atual&quot;: {
+			// ...
+		},
+		&quot;histórico&quot;: [
+			{
+				&quot;ano&quot;: &quot;2021&quot;,
+				// ...
+			}	
+		],
+	},
+	&quot;indicadores de rentabilidade&quot;: {
+		&quot;atual&quot;: {
+			// ...
+		},
+		&quot;histórico&quot;: [
+			{
+				&quot;ano&quot;: &quot;2021&quot;,
+				// ...
+			}	
+		],
+	}
+}</code></pre></details></li></ul></li></ol></details></li></ul><ul id="1d31b04b-23bb-4d7d-ac40-db9e88ea67c1" class="toggle"><li><details open=""><summary>Obter as informações gerais de um ativo</summary><ol type="1" id="021e44d9-d10e-4a67-a97b-c08da405df06" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="9048fd6d-b94b-487f-a6bd-c118a86ca447" class="code"><code>GET http://localhost:3000/real_state_fund/general_informations/{assetCode}</code></pre></li></ol><ol type="1" id="98fa2945-cbae-4c7a-8913-e13a6e3c0bf5" class="numbered-list" start="2"><li>Execução do processo de extração de dados<ol type="a" id="2456b8c9-f734-4ec7-ad33-2916e194caae" class="numbered-list" start="1"><li>Recuperar as informações gerais no banco de dados via propriedade <code>codigoDoAtivo</code></li></ol><ol type="a" id="7ccfe450-fadb-4cca-97bf-8bb1ba590698" class="numbered-list" start="2"><li>Se a diferença da data atual e o valor da propriedade <code>dataBase</code> for menor do que 1 semana, então retornar os dados do banco de dados</li></ol><ol type="a" id="9c4cb248-1f0d-4f86-9992-367ae49cd59d" class="numbered-list" start="3"><li>Caso contrário extrair as informações gerais do ativo no <em>Status Invest</em><ol type="i" id="90805fdc-2911-4c8b-8d25-bb31386f4e45" class="numbered-list" start="1"><li>Definir a propriedade <code>dataBase</code> com o valor da data atual</li></ol><ol type="i" id="e9480596-e82e-4e36-b990-6870836c8ee3" class="numbered-list" start="2"><li>Tratar os dados coletados no Status Invest</li></ol><ol type="i" id="59d3abde-97ed-48b4-b5f7-2708b0285179" class="numbered-list" start="3"><li>Salvá-los no banco de dados</li></ol></li></ol></li></ol><ol type="1" id="6f4a71c9-3a41-49c2-b410-4327a4c5ff2f" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="bad023d0-7956-40c1-a9f0-9b96261201d8" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;data base&quot;: &quot;yyyy-MM-dd&quot;,
+	&quot;infomações gerais&quot;: {
+		// ...
+	}
+}</code></pre></li></ol></details></li></ul><ul id="12583fcf-e0db-48a7-8583-abe69f099985" class="toggle"><li><details open=""><summary>Obter último dividendo pago</summary><ol type="1" id="08a6344f-40c7-4012-8a3c-daf2125398e9" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="53d95b63-2faa-40de-95ff-f7998f0be7b1" class="code"><code>GET http://localhost:3000/real_state_fund/corporative_events/dividends/last_dividend/{assetCode}</code></pre></li></ol><ol type="1" id="1781a876-313b-4643-9ea3-0974366d8eba" class="numbered-list" start="2"><li>Execução do processo de extração de dados<ol type="a" id="93764125-33ea-45bf-9404-c7e8d258bdf9" class="numbered-list" start="1"><li>Recuperar os dados no banco de dados via propriedade <code>codigoDoAtivo</code> e <code>ultimoDividendo == true</code> </li></ol><ol type="a" id="f9e259d2-606d-4a6c-a6fa-c524c774af2c" class="numbered-list" start="2"><li>Se a diferença da data atual e o valor da propriedade <code>dataBase</code> for menor do que 1 semana, então retornar os dados do banco de dados</li></ol><ol type="a" id="09cfda77-d04d-4a5d-a875-523f470a6a52" class="numbered-list" start="3"><li>Caso contrário extrair os dados do último dividendo do ativo no <em>Status Invest</em><p id="342b0dcb-0236-496b-9037-96549eefa04d" class="">Verificar se o os dados coletados no Status Invest são iguais do banco de dados<div class="indented"><ol type="1" id="c7f6ff5b-4219-4319-bc41-8917b1d43125" class="numbered-list" start="1"><li>Se sim: <ol type="a" id="bac95300-63cb-48ba-a193-4552713c0e87" class="numbered-list" start="1"><li>Atualizar a propriedade <code>dataBase</code> com o valor da data atual</li></ol><ol type="a" id="29795de4-3ed9-44a9-aae9-5cd281a5fa6f" class="numbered-list" start="2"><li>Retornar os dados do banco de dados</li></ol></li></ol><ol type="1" id="ce9e8503-dee9-49d0-9480-c66ab1f213cd" class="numbered-list" start="2"><li>Se não: <ol type="a" id="c2b93779-2bd8-4065-93c2-1eea2d978201" class="numbered-list" start="1"><li>Definir a propriedade <code>dataBase</code> com o valor da data atual</li></ol><ol type="a" id="beed654a-df9b-4bc5-a32b-e8af31c619b4" class="numbered-list" start="2"><li>Definir a propriedade <code>ultimoDividendo</code> com o valor <code>true</code></li></ol><ol type="a" id="eb1b5a18-1e57-402f-8153-e18d5c234af8" class="numbered-list" start="3"><li>Definir a propriedade <code>proximoDividendo</code> com o valor <code>false</code></li></ol><ol type="a" id="2de1dd8e-176a-4b52-824c-ff817f49b789" class="numbered-list" start="4"><li>Tratar os dados coletados no <em>Status Invest</em></li></ol><ol type="a" id="effe81c4-d41b-4b54-a8bf-eaa11676971c" class="numbered-list" start="5"><li>Salvá-los no banco de dados</li></ol></li></ol></div></p></li></ol></li></ol><ol type="1" id="7572a04d-e042-4b69-b5cf-c15e0e165974" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="3c25008b-1ea4-4aad-b0b9-c4e4b2d49f22" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;data base&quot;: &quot;yyyy-MM-dd&quot;,
+	&quot;data com&quot;: &quot;yyyy-MM-dd&quot;,
+	&quot;data de pagamento&quot;: &quot;yyyy-MM-dd&quot;,
+	&quot;valor&quot;: ...,
+}</code></pre></li></ol></details></li></ul><ul id="17398816-8bf8-4245-b767-ba2257b7aaca" class="toggle"><li><details open=""><summary>Obter próximo dividendo</summary><ol type="1" id="046532ec-097e-4bfd-8cd3-2c0a8542698c" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="bf117415-4c3a-4ccd-8e38-9ec6c9fd0fcb" class="code"><code>GET http://localhost:3000/real_state_fund/corporative_events/dividends/next_dividend/{assetCode}</code></pre></li></ol><ol type="1" id="dc3eb2ca-0054-4cc4-a9b9-dde444b356fc" class="numbered-list" start="2"><li>Execução do processo de extração de dados<ol type="a" id="357013e9-7ed6-4691-8511-d3ba66d1a044" class="numbered-list" start="1"><li>Recuperar os dados no banco de dados via propriedade <code>codigoDoAtivo</code> e <code>proximoDividendo == true</code> </li></ol><ol type="a" id="94761c43-6335-41ee-ba16-b4c459dd9fd8" class="numbered-list" start="2"><li>Se a diferença da data atual e o valor da propriedade <code>dataBase</code> for menor do que 1 semana, então retornar os dados do banco de dados</li></ol><ol type="a" id="41caca2c-bc2b-48bd-b782-f16b1a4c9a65" class="numbered-list" start="3"><li>Caso contrário extrair os dados do último dividendo do ativo no <em>Status Invest</em><p id="db0e280d-ecf3-46a0-8458-fb5fd9f598db" class="">Verificar se os dados coletados no Status Invest são iguais do banco de dados<div class="indented"><ol type="1" id="4abf447a-a09c-48e0-9f49-66c96141344a" class="numbered-list" start="1"><li>Se sim: <ol type="a" id="494ad6d1-5e79-4d0e-9e15-15c6e24cb1c3" class="numbered-list" start="1"><li>Atualizar a propriedade <code>dataBase</code> com o valor da data atual</li></ol><ol type="a" id="fc17e126-9dcb-4d3d-922e-6b5d661dd0cc" class="numbered-list" start="2"><li>Retornar os dados do banco de dados</li></ol></li></ol><ol type="1" id="77f625b7-80f4-447a-97f3-53c6cd90c316" class="numbered-list" start="2"><li>Se não: <ol type="a" id="4ed2a27d-38e3-460b-bf38-06099fc5000b" class="numbered-list" start="1"><li>Definir a propriedade <code>dataBase</code> com o valor da data atual</li></ol><ol type="a" id="c003f1cc-8bbb-41f2-ba87-1499d71952ed" class="numbered-list" start="2"><li>Definir a propriedade <code>ultimoDividendo</code> com o valor <code>false</code></li></ol><ol type="a" id="2cea1608-81c4-41e8-88b6-cd85892f5395" class="numbered-list" start="3"><li>Definir a propriedade <code>proximoDividendo</code> com o valor <code>true</code></li></ol><ol type="a" id="be10b33c-bcc5-4c72-b6d2-841f8ef6f6f5" class="numbered-list" start="4"><li>Tratar os dados coletados no <em>Status Invest</em></li></ol><ol type="a" id="d660da62-9c35-4827-9537-82cefe92e121" class="numbered-list" start="5"><li>Salvá-los no banco de dados</li></ol></li></ol></div></p></li></ol></li></ol><ol type="1" id="13e34f55-9434-48f8-8c78-ab31eabf019d" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="5caa495c-67d6-42b0-a4b6-48f9b7d9388f" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;data base&quot;: &quot;yyyy-MM-dd&quot;,
+	&quot;data com&quot;: &quot;yyyy-MM-dd&quot;,
+	&quot;data de pagamento&quot;: &quot;yyyy-MM-dd&quot;,
+	&quot;valor&quot;: ...,
+}</code></pre></li></ol></details></li></ul><ul id="ae34b9b6-f8db-4dc9-a5db-3441b6090130" class="toggle"><li><details open=""><summary>Obter a última subscrição anunciada</summary><ol type="1" id="4c285028-9397-44a8-8ab0-7b600e5c14bb" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="0c46d7db-7131-4ddb-a801-f03bdef1f466" class="code"><code>GET http://localhost:3000/real_state_fund/corporative_events/subscription/last_subscription/{assetCode}</code></pre></li></ol><ol type="1" id="50d2b978-6100-4803-aca8-6d9630f35aeb" class="numbered-list" start="2"><li>Execução do processo de extração de dados<ol type="a" id="5fc43ed6-23c7-46b3-b314-052d7c9009cb" class="numbered-list" start="1"><li>Recuperar os dados no banco de dados via propriedade <code>codigoDoAtivo</code> e <code>ultimaSubscricao == true</code> </li></ol><ol type="a" id="39c5fb3e-d493-4992-b923-e908dc941dfa" class="numbered-list" start="2"><li>Se a diferença da data atual e o valor da propriedade <code>dataBase</code> for menor do que 1 semana, então retornar os dados do banco de dados</li></ol><ol type="a" id="31e61142-dc02-4ef7-981c-3580cd93ca4b" class="numbered-list" start="3"><li>Caso contrário extrair os dados da última subscrição do ativo no <em>Status Invest</em><p id="7d82fab9-c9f0-4380-84a6-3792cf715505" class="">Verificar se os dados coletados no Status Invest são iguais do banco de dados<div class="indented"><ol type="1" id="74909f68-3b4b-4b09-a5de-1be23d4ba771" class="numbered-list" start="1"><li>Se sim: <ol type="a" id="ba49518e-f037-4873-8907-7e4cd954e044" class="numbered-list" start="1"><li>Atualizar a propriedade <code>dataBase</code> com o valor da data atual</li></ol><ol type="a" id="2b5c850f-683a-4e93-a330-187894ed93d8" class="numbered-list" start="2"><li>Retornar os dados do banco de dados</li></ol></li></ol><ol type="1" id="3099de02-f483-4ddb-8acb-fa5166b80b11" class="numbered-list" start="2"><li>Se não: <ol type="a" id="529345cb-0896-485f-ba71-31c6a560209b" class="numbered-list" start="1"><li>Definir a propriedade <code>dataBase</code> com o valor da data atual</li></ol><ol type="a" id="1bc9d6b2-9445-44d1-8f67-d6d5478bb38c" class="numbered-list" start="2"><li>Definir a propriedade <code>ultimaSubscricao</code> com o valor <code>true</code></li></ol><ol type="a" id="d1f21445-a2e4-4cce-948b-d4b5f2c9b828" class="numbered-list" start="3"><li>Atualizar a propriedade <code>ultimaSubscricao</code> com o valor <code>false</code> para o comunicado anterior definido como “última subscrição”</li></ol><ol type="a" id="af58c66d-d32a-4c69-a4fc-d00ade31d53a" class="numbered-list" start="4"><li>Tratar os dados coletados no <em>Status Invest</em></li></ol><ol type="a" id="2e67cfe4-ba4c-401c-83a0-149cfa58ab49" class="numbered-list" start="5"><li>Salvá-los no banco de dados</li></ol></li></ol></div></p></li></ol></li></ol><ol type="1" id="0db9ea40-5da6-4d40-808a-f6a1895a6ee0" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="fe94e972-d6d8-495e-bd44-593fcdc7ffe4" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;data base&quot;: &quot;yyyy-MM-dd&quot;,
+	&quot;data com&quot;: &quot;yyyy-MM-dd&quot;,
+	&quot;data de negociação&quot;: &quot;yyyy-MM-dd&quot;,
+	&quot;valor base&quot;: ...,
+	&quot;percentual&quot;: ...,
+	&quot;ativo emitido&quot;: &quot;...&quot;,
+}</code></pre></li></ol></details></li></ul><ul id="6ac80f52-bb87-4f31-8ff0-5cfdfc30b5b2" class="toggle"><li><details open=""><summary>Listagem de todos os imóveis do portfolio de um ativo</summary><ol type="1" id="0c2ee4f5-5c86-42d0-9e4a-3839b0804414" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="c8385ef9-fa3c-4353-95e1-e6e3a52da110" class="code"><code>GET http://localhost:3000/real_state_fund/portfolio/real_state/{assetCode}</code></pre></li></ol><ol type="1" id="b0f699af-64ca-44e1-b03c-88fddca63068" class="numbered-list" start="2"><li>Execução do processo de extração de dados<ol type="a" id="6a26f849-708e-4020-b0f0-778d7fd57183" class="numbered-list" start="1"><li>Recuperar os imóveis no banco de dados via propriedade <code>codigoDoAtivoDoDono</code> </li></ol><ol type="a" id="601ef62f-ecae-463a-a3e6-6da687904538" class="numbered-list" start="2"><li>Se a diferença da data atual e o valor da propriedade <code>dataBase</code> for menor do que 1 semana, então retornar os dados do banco de dados</li></ol><ol type="a" id="097cff9e-0afd-4d7b-9901-76d22bc0f245" class="numbered-list" start="3"><li>Caso contrário extrair os dados dos imóveis do portfolio do ativo no <em>Status Invest</em><ol type="i" id="7da813b5-c405-4d9c-b057-758fb6918183" class="numbered-list" start="1"><li>Definir a propriedade <code>dataBase</code> com o valor da data atual</li></ol><ol type="i" id="d56f0cc7-c85a-4f47-be69-6cc6b60a2fbc" class="numbered-list" start="2"><li>Tratar os dados coletados no <em>Status Invest</em></li></ol><ol type="i" id="e97162af-7d46-491f-8c3b-f47ab53c914a" class="numbered-list" start="3"><li>Salvá-los no banco de dados</li></ol></li></ol></li></ol><ol type="1" id="47db1b9c-3100-4af5-a99d-63933b4c388a" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="f46c127c-1689-4298-b0e6-0dfd912893ca" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;data base&quot;: &quot;yyyy-MM-dd&quot;
+	&quot;imóveis&quot;: [
+		{
+			&quot;objetivo&quot;: &quot;...&quot;,
+			&quot;abl&quot;: ...,
+			&quot;localização&quot;: {
+				&quot;cidade&quot;: &quot;...&quot;,
+				&quot;estado&quot;: &quot;...&quot;,
+			},
+			&quot;vacância&quot;: ...,
+			&quot;inadimplência&quot;: ..., 
+		},
+		// ...
+	]
+}</code></pre></li></ol></details></li></ul><ul id="98763c59-9e3e-41ca-ab2b-3036bc493b3a" class="toggle"><li><details open=""><summary>Listagem de todos os FIIs do portfolio de um ativo</summary><ol type="1" id="6ad7bf5c-2a23-4c80-9659-b55139220254" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="3200d892-a6c4-4290-83f7-e3cc80934877" class="code"><code>GET http://localhost:3000/real_state_fund/portfolio/real_state_funds/{assetCode}</code></pre></li></ol><ol type="1" id="bb1d484b-d673-4537-96f3-7924d0cea588" class="numbered-list" start="2"><li>Execução do processo de extração de dados<ol type="a" id="12a28aa9-31f1-437f-b682-6cff78267ea0" class="numbered-list" start="1"><li>Recuperar os imóveis no banco de dados via propriedade <code>codigoDoAtivoDoDono</code> </li></ol><ol type="a" id="1837838b-5beb-4b83-a505-63b361f5caa3" class="numbered-list" start="2"><li>Se a diferença da data atual e o valor da propriedade <code>dataBase</code> for menor do que 1 semana, então retornar os dados do banco de dados</li></ol><ol type="a" id="2918f80a-ccac-4173-8f43-507d2bd1edb2" class="numbered-list" start="3"><li>Caso contrário extrair os dados dos FIIs do portfolio do ativo no <em>Status Invest</em><ol type="i" id="f47da979-e3c4-4bdd-baf6-3bd7360e3470" class="numbered-list" start="1"><li>Definir a propriedade <code>dataBase</code> com o valor da data atual</li></ol><ol type="i" id="b683de13-4a83-438e-a83b-cd342ff7a5c1" class="numbered-list" start="2"><li>Tratar os dados coletados no <em>Status Invest</em></li></ol><ol type="i" id="4adae984-07bc-4fad-9a1f-b338bee55fd7" class="numbered-list" start="3"><li>Salvá-los no banco de dados</li></ol></li></ol></li></ol><ol type="1" id="ddc7b46b-06d8-461c-b6df-23cdfb9f9f04" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="b9f45bb3-ed5c-4c1f-86bd-6cebe9c866cc" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;data base&quot;: &quot;yyyy-MM-dd&quot;
+	&quot;fiis&quot;: [
+		{
+			&quot;código do ativo&quot;: &quot;...&quot;,
+			&quot;segmento&quot;: &quot;...&quot;,
+			&quot;número de cotas&quot;: ...,
+			&quot;representação do PL&quot;: ...,
+		},
+		// ...
+	]
+}</code></pre></li></ol></details></li></ul><ul id="d6d0550a-60a2-4e0f-8da4-6a29e2496e73" class="toggle"><li><details open=""><summary>Listagem de todas as notícias de um ativo</summary><ol type="1" id="24e6cacf-0fe0-437a-8539-f1bcfd0120f3" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="77a0bd65-5333-4bee-a881-848388e5001c" class="code"><code>GET http://localhost:3000/real_state_fund/news/{assetCode}</code></pre></li></ol><ol type="1" id="35aab619-c219-4020-a8a2-0bfb2424920a" class="numbered-list" start="2"><li>Execução do processo de extração de dados<ol type="a" id="d1e942d8-3007-400c-8b40-a1186ecfc939" class="numbered-list" start="1"><li>Recuperar os imóveis no banco de dados via propriedade <code>codigoDoAtivo</code></li></ol><ol type="a" id="956303e7-8cd7-4fda-9a4c-59af2f382ea9" class="numbered-list" start="2"><li>Se a diferença da data atual e o valor da propriedade <code>dataBase</code> for menor do que 1 dia, então retornar os dados do banco de dados</li></ol><ol type="a" id="8b9b2b8f-a947-4386-9448-e922776be6ce" class="numbered-list" start="3"><li>Caso contrário extrair os dados das notícias do ativo no <em>Status Invest</em><ol type="i" id="28183b94-f76a-4a75-a6c9-28ea871aac42" class="numbered-list" start="1"><li>Definir a propriedade <code>dataBase</code> com o valor da data atual</li></ol><ol type="i" id="19bcb1ec-b4b4-4e9a-a573-b117533ff15a" class="numbered-list" start="2"><li>Tratar os dados coletados no <em>Status Invest</em></li></ol><ol type="i" id="349fbfd4-6b49-458a-ba17-8aca14c2a746" class="numbered-list" start="3"><li>Salvá-los no banco de dados</li></ol></li></ol></li></ol><ol type="1" id="c1f4962e-f814-4cfd-a0c3-e4a5066429f5" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="1dc3b440-6ab6-4bea-b631-f97b0646d6bf" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;data base&quot;: &quot;yyyy-MM-dd&quot;
+	&quot;notícias&quot;: [
+		{
+			&quot;título&quot;: &quot;...&quot;,
+			&quot;data e hora de publicação&quot;: &quot;yyyy-MM-dd&quot;,
+			&quot;url&quot;: ...,
+		},
+		// ...
+	]
+}</code></pre></li></ol></details></li></ul><ul id="fdc2f091-bc29-4f24-a0c8-933d928ca1f7" class="toggle"><li><details open=""><summary>Obter notícias a partir de palavras-chave do título</summary><ol type="1" id="b96c206c-2d16-4ad2-b6c7-f126a4d304aa" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="a9f17c8b-acd1-4347-a0a1-f1ac2a4f0987" class="code"><code>POST http://localhost:3000/real_state_fund/news/search/{assetCode}?search_criteria=title
+
+{
+	&quot;título&quot;: &quot;...&quot;,
+}</code></pre></li></ol><ol type="1" id="0cad828c-8fc3-41a7-9b68-43bb8ac94525" class="numbered-list" start="2"><li>Processamento da requisição<ol type="a" id="376350e0-69ce-43bc-ac0f-bcc1c1765145" class="numbered-list" start="1"><li>Reutilizar o caso de uso <code>Listagem de todas as notícias de um ativo</code></li></ol><ol type="a" id="904de5ab-36b5-4e04-a490-75a0ea8a0e8b" class="numbered-list" start="2"><li>Filtrar as notícias com títulos que contêm o texto especificado no corpo da requisição</li></ol></li></ol><ol type="1" id="d5bc2c22-309a-4c22-b8c2-5b92cef661aa" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="e2484b39-7afc-46cc-b136-9c630dc05585" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;data base&quot;: &quot;yyyy-MM-dd&quot;
+	&quot;notícias&quot;: [
+		{
+			&quot;título&quot;: &quot;...&quot;,
+			&quot;data e hora de publicação&quot;: &quot;yyyy-MM-dd&quot;,
+			&quot;url&quot;: ...,
+		},
+		// ...
+	]
+}</code></pre></li></ol></details></li></ul><ul id="677b29fc-e093-4cdd-a80f-3a3d4690a211" class="toggle"><li><details open=""><summary>Obter notícias com data de publicação entre um intervalo de datas</summary><ol type="1" id="1224dc71-a696-4def-affb-87c0cbc2f976" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="29401feb-9d3f-48dd-baa2-e968052e7558" class="code"><code>POST http://localhost:3000/real_state_fund/news/search/{assetCode}?search_criteria=released_at
+
+{
+	&quot;mínimo&quot;: &quot;yyyy-MM-dd&quot;,
+	&quot;máximo&quot;: &quot;yyyy-MM-dd&quot;,
+}</code></pre></li></ol><ol type="1" id="2322b535-0cc5-4f91-bca3-50460559c306" class="numbered-list" start="2"><li>Processamento da requisição<ol type="a" id="45622ee6-906b-43da-a956-ed838272845f" class="numbered-list" start="1"><li>Reutilizar o caso de uso <code>Listagem de todas as notícias de um ativo</code></li></ol><ol type="a" id="a372170a-492c-4573-99d8-fb785f5d6e07" class="numbered-list" start="2"><li>Filtrar as notícias com a propriedade <code>dataEHoraDepublicacao</code> com um valor entre o intervalo fornecido (<code>mínimo</code> e <code>máximo</code>)</li></ol></li></ol><ol type="1" id="5afd0c9d-e848-45f6-95f5-7a57a919d5cc" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="d1fce551-c728-40df-b719-41f69186ad6a" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;data base&quot;: &quot;yyyy-MM-dd&quot;
+	&quot;notícias&quot;: [
+		{
+			&quot;título&quot;: &quot;...&quot;,
+			&quot;data e hora de publicação&quot;: &quot;yyyy-MM-dd&quot;,
+			&quot;url&quot;: ...,
+		},
+		// ...
+	]
+}</code></pre></li></ol></details></li></ul><ul id="7ad1b839-55da-42b5-9e82-83a59448c1f8" class="toggle"><li><details open=""><summary>Listagem de todos os comunicados</summary><ol type="1" id="50f1a5bd-ba3a-42d6-a0d0-d9291a588e0a" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="548a35ea-dec1-49fc-8887-5ba0c1d1ad95" class="code"><code>GET http://localhost:3000/real_state_fund/announcements/{assetCode}</code></pre></li></ol><ol type="1" id="b21d0e95-cf2b-4536-84cb-b53f8a192559" class="numbered-list" start="2"><li>Execução do processo de extração de dados<ol type="a" id="fb31b225-c9db-4679-bdf6-bebcf0bcde66" class="numbered-list" start="1"><li>Recuperar os imóveis no banco de dados via propriedade <code>codigoDoAtivo</code></li></ol><ol type="a" id="c4185ce7-f5ed-4dad-8504-3ac154652792" class="numbered-list" start="2"><li>Se a diferença da data atual e o valor da propriedade <code>dataBase</code> for menor do que 1 semana, então retornar os dados do banco de dados</li></ol><ol type="a" id="1274ac76-e7f0-48c0-bc0d-50602d86de95" class="numbered-list" start="3"><li>Caso contrário extrair os dados dos comunicados do ativo no <em>Status Invest</em><ol type="i" id="f79ce46b-86fe-4823-9c26-b9025e0fab80" class="numbered-list" start="1"><li>Definir a propriedade <code>dataBase</code> com o valor da data atual</li></ol><ol type="i" id="eccc550c-5169-4607-9272-95981e15b04b" class="numbered-list" start="2"><li>Tratar os dados coletados no <em>Status Invest</em></li></ol><ol type="i" id="2b4e8f81-f93f-472b-90e0-95ec7430a6d2" class="numbered-list" start="3"><li>Salvá-los no banco de dados</li></ol></li></ol></li></ol><ol type="1" id="72227f13-9234-4eeb-ba4c-14482f0faa1c" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="11517ff6-a4b3-4a86-8822-a1eef5bda078" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;data base&quot;: &quot;yyyy-MM-dd&quot;
+	&quot;comunicados&quot;: [
+		{
+			&quot;título&quot;: &quot;...&quot;,
+			&quot;data de publicação&quot;: &quot;yyyy-MM-dd&quot;,
+			&quot;url de download&quot;: ...,
+		},
+		// ...
+	]
+}</code></pre></li></ol></details></li></ul><ul id="a563a70f-94f1-4e10-a78e-9e466c8971fd" class="toggle"><li><details open=""><summary>Obter último comunicado de um ativo</summary><ol type="1" id="00d330e4-2842-4103-82ad-8d25415b57bc" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="39861686-f55d-4fed-b97a-f14963b42986" class="code"><code>GET http://localhost:3000/real_state_fund/announcements/last_announcement/{assetCode}</code></pre></li></ol><ol type="1" id="45903039-4b30-467c-bad9-3f341d015146" class="numbered-list" start="2"><li>Execução do processo de extração de dados<ol type="a" id="a66bacf7-c139-4e18-b8f0-8009d8e72291" class="numbered-list" start="1"><li>Recuperar os dados no banco de dados via propriedade <code>codigoDoAtivo</code> e <code>ultimoComunicado == true</code> </li></ol><ol type="a" id="d7f64e6f-4e2d-49c0-a077-0df552b2739d" class="numbered-list" start="2"><li>Se a diferença da data atual e o valor da propriedade <code>dataBase</code> for menor do que 1 semana, então retornar os dados do banco de dados</li></ol><ol type="a" id="bdbcffcf-f960-4476-bc3f-161c969f3d85" class="numbered-list" start="3"><li>Caso contrário extrair os dados do último comunicado do ativo no <em>Status Invest</em><p id="7521e6d6-62e0-4249-aaf1-2c647ac18b9b" class="">Verificar se os dados coletados no Status Invest são iguais do banco de dados<div class="indented"><ol type="1" id="cd281d9e-fb22-437a-a3de-d7e7cffcef9c" class="numbered-list" start="1"><li>Se sim: <ol type="a" id="88602982-6697-403e-8215-edbda585c70f" class="numbered-list" start="1"><li>Atualizar a propriedade <code>dataBase</code> com o valor da data atual</li></ol><ol type="a" id="98b73756-03a0-4834-b0f6-7432aed65118" class="numbered-list" start="2"><li>Retornar os dados do banco de dados</li></ol></li></ol><ol type="1" id="11a53387-1ab8-4874-acfd-ba2e209b34ea" class="numbered-list" start="2"><li>Se não: <ol type="a" id="bf8f433e-caec-4131-80a6-b36667839fd0" class="numbered-list" start="1"><li>Definir a propriedade <code>dataBase</code> com o valor da data atual</li></ol><ol type="a" id="e7fda3b6-c73d-48da-90ca-5e1be57cefe7" class="numbered-list" start="2"><li>Definir a propriedade <code>ultimoComunicado</code> com o valor <code>true</code></li></ol><ol type="a" id="301915c5-4e76-45b8-a93f-3ba6621ef8bc" class="numbered-list" start="3"><li>Atualizar a propriedade <code>ultimoComunicado</code> com o valor <code>false</code> para o comunicado anterior definido como “último comunicado”</li></ol><ol type="a" id="a243fe4a-65ed-4a6f-a261-358067135e38" class="numbered-list" start="4"><li>Tratar os dados coletados no <em>Status Invest</em></li></ol><ol type="a" id="61de2004-944b-4b8b-8818-675dd3880670" class="numbered-list" start="5"><li>Salvá-los no banco de dados</li></ol></li></ol></div></p></li></ol></li></ol></details></li></ul><ul id="7db0c045-3d9f-47de-895c-d1d2850bb807" class="toggle"><li><details open=""><summary>Obter comunicadoa partir de palavras-chave do título</summary><ol type="1" id="483f95b1-1458-4c9d-a3c8-d1abb16259be" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="262f82bb-af60-44d0-bbe4-a22a469c5bf6" class="code"><code>POST http://localhost:3000/real_state_fund/announcements/search/{assetCode}?search_criteria=title
+
+{
+	&quot;título&quot;: &quot;...&quot;,
+}</code></pre></li></ol><ol type="1" id="49b4f3c9-5982-48f3-bae1-e7a65ad6fb30" class="numbered-list" start="2"><li>Processamento da requisição<ol type="a" id="329b6aed-4df2-4385-889c-504e6c27b7ce" class="numbered-list" start="1"><li>Reutilizar o caso de uso <code>Listagem de todas as notícias de um ativo</code></li></ol><ol type="a" id="48f22600-5a84-45d8-8df5-bae8da119b4d" class="numbered-list" start="2"><li>Filtrar os comunicados com títulos que contêm o texto especificado no corpo da requisição</li></ol></li></ol><ol type="1" id="2cdd6198-92a6-43da-9398-7a9091c415e3" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="5f3a9da7-bf27-49ed-afce-13a0d94bbe0b" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;data base&quot;: &quot;yyyy-MM-dd&quot;
+	&quot;comunicados&quot;: [
+		{
+			&quot;título&quot;: &quot;...&quot;,
+			&quot;data de publicação&quot;: &quot;yyyy-MM-dd&quot;,
+			&quot;url de download&quot;: ...,
+		},
+		// ...
+	]
+}</code></pre></li></ol></details></li></ul><ul id="7b5e13b0-fc25-49e3-bae5-b89edc2c2fd2" class="toggle"><li><details open=""><summary>Obter  comunicados com data de publicação entre um intervalo de datas</summary><ol type="1" id="f57d70f5-7296-481f-afd3-b739534b0465" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="7cb808e4-3f26-4cde-b32c-808bd7b045f4" class="code"><code>POST http://localhost:3000/real_state_fund/announcements/search/{assetCode}?search_criteria=released_at
+
+{
+	&quot;mínimo&quot;: &quot;yyyy-MM-dd&quot;,
+	&quot;máximo&quot;: &quot;yyyy-MM-dd&quot;,
+}</code></pre></li></ol><ol type="1" id="d50c5b70-ff6a-4864-ba7a-a7cb7ef94969" class="numbered-list" start="2"><li>Processamento da requisição<ol type="a" id="015ad917-21a3-428a-a51e-f1ed0983923d" class="numbered-list" start="1"><li>Reutilizar o caso de uso <code>Listagem de todos os comunicados</code></li></ol><ol type="a" id="8de8cfc3-89e1-4293-9d77-a85fa25cd9ad" class="numbered-list" start="2"><li>Filtrar as notícias com a propriedade <code>dataDePublicacao</code> com um valor entre o intervalo fornecido (<code>mínimo</code> e <code>máximo</code>)</li></ol></li></ol><ol type="1" id="faf8702e-ed72-4631-9116-248a608cbc8a" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="4e03a0d4-f4c3-475a-a261-f37753ed920b" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;data base&quot;: &quot;yyyy-MM-dd&quot;
+	&quot;notícias&quot;: [
+		{
+			&quot;título&quot;: &quot;...&quot;,
+			&quot;data e hora de publicação&quot;: &quot;yyyy-MM-dd&quot;,
+			&quot;url&quot;: ...,
+		},
+		// ...
+	]
+}</code></pre></li></ol></details></li></ul><p id="8a72580c-6b2d-476c-abd9-657fa03ec8f4" class="">
+</p></div></article></body></html>

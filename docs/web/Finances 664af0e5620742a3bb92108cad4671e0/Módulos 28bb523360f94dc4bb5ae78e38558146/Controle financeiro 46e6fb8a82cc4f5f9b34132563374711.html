@@ -1,0 +1,729 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Controle financeiro</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="46e6fb8a-82cc-4f5f-9b34-132563374711" class="page sans"><header><h1 class="page-title">Controle financeiro</h1><table class="properties"><tbody><tr class="property-row property-row-status"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesStatus"><path d="M8.75488 1.02344C8.75488 0.613281 8.41309 0.264648 8.00293 0.264648C7.59277 0.264648 7.25098 0.613281 7.25098 1.02344V3.11523C7.25098 3.51855 7.59277 3.86719 8.00293 3.86719C8.41309 3.86719 8.75488 3.51855 8.75488 3.11523V1.02344ZM3.91504 5.0293C4.20215 5.31641 4.69434 5.32324 4.97461 5.03613C5.26855 4.74902 5.26855 4.25684 4.98145 3.96973L3.53906 2.52051C3.25195 2.2334 2.7666 2.21973 2.47949 2.50684C2.19238 2.79395 2.18555 3.28613 2.47266 3.57324L3.91504 5.0293ZM10.9629 4.01758C10.6826 4.30469 10.6826 4.79688 10.9697 5.08398C11.2568 5.37109 11.749 5.36426 12.0361 5.07715L13.4854 3.62793C13.7725 3.34082 13.7725 2.84863 13.4785 2.55469C13.1982 2.27441 12.7061 2.27441 12.4189 2.56152L10.9629 4.01758ZM15.0234 8.78906C15.4336 8.78906 15.7822 8.44727 15.7822 8.03711C15.7822 7.62695 15.4336 7.28516 15.0234 7.28516H12.9385C12.5283 7.28516 12.1797 7.62695 12.1797 8.03711C12.1797 8.44727 12.5283 8.78906 12.9385 8.78906H15.0234ZM0.975586 7.28516C0.56543 7.28516 0.223633 7.62695 0.223633 8.03711C0.223633 8.44727 0.56543 8.78906 0.975586 8.78906H3.07422C3.48438 8.78906 3.83301 8.44727 3.83301 8.03711C3.83301 7.62695 3.48438 7.28516 3.07422 7.28516H0.975586ZM12.0361 10.9902C11.749 10.71 11.2568 10.71 10.9629 10.9971C10.6826 11.2842 10.6826 11.7764 10.9697 12.0635L12.4258 13.5127C12.7129 13.7998 13.2051 13.793 13.4922 13.5059C13.7793 13.2256 13.7725 12.7266 13.4854 12.4395L12.0361 10.9902ZM2.52051 12.4395C2.22656 12.7266 2.22656 13.2188 2.50684 13.5059C2.79395 13.793 3.28613 13.7998 3.57324 13.5127L5.02246 12.0703C5.31641 11.7832 5.31641 11.291 5.03613 11.0039C4.74902 10.7168 4.25684 10.71 3.96973 10.9971L2.52051 12.4395ZM8.75488 12.9658C8.75488 12.5557 8.41309 12.207 8.00293 12.207C7.59277 12.207 7.25098 12.5557 7.25098 12.9658V15.0576C7.25098 15.4609 7.59277 15.8096 8.00293 15.8096C8.41309 15.8096 8.75488 15.4609 8.75488 15.0576V12.9658Z"></path></svg></span>Progresso</th><td><span class="status-value select-value-color-orange"><div class="status-dot status-dot-color-orange"></div>Pronto para desenvolvimento</span></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM7.62402 10.6348C7.79492 10.915 8.20508 10.9287 8.37598 10.6348L10.666 6.73145C10.8574 6.41016 10.7002 6.04102 10.3652 6.04102H5.62793C5.29297 6.04102 5.14941 6.43066 5.32031 6.73145L7.62402 10.6348Z"></path></svg></span>Prioridade</th><td><span class="selected-value select-value-color-red">Alto</span></td></tr></tbody></table></header><div class="page-body"><h2 id="18e955ab-cffc-414a-b5f6-18ec8c7e1559" class="">Função</h2><p id="d76e332d-f5c3-4dcb-812c-57154abf0e5a" class="">Gerenciamento das transações feitas na conta corrente do usuário.</p><p id="649f6f5a-6f6e-4ce8-b6d7-c85d761e0a19" class="">Tipos de transações:</p><ul id="44a10ce9-e398-4dba-a9fc-e03f9f90c56c" class="bulleted-list"><li style="list-style-type:disc">Saque</li></ul><ul id="53f2a001-22fc-41a7-8d41-e21a15068249" class="bulleted-list"><li style="list-style-type:disc">Transferência<ul id="4e09c294-3c8e-4d0b-9494-f819a9e1f361" class="bulleted-list"><li style="list-style-type:circle">PIX</li></ul><ul id="1df7e7df-59b0-448b-b6da-05208ff50f83" class="bulleted-list"><li style="list-style-type:circle">TED (com cobrança de uma taxa)</li></ul><blockquote id="1a5aeb29-e8a5-4e0a-a7e8-6cfa8880df72" class="">As transações com o destinatário como uma corretora de valores (NuInvest) devem ser consideradas do tipo “Investimento”</blockquote></li></ul><ul id="687d8b3e-c208-44e3-8e4b-efec0907a99e" class="bulleted-list"><li style="list-style-type:disc">Depósito</li></ul><ul id="622ab1a4-275c-4b27-a048-d5d3264eb2bb" class="bulleted-list"><li style="list-style-type:disc">Investimento</li></ul><h2 id="f1c5906d-c8e4-4e40-bcf4-c40b0e19dffd" class="">Funcionalidades</h2><ul id="2176fded-9c4c-497d-8899-8efa76874feb" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Visualização do saldo</span></li></ul><ul id="b12c953e-9e8b-4ca2-b50e-b2e7a1473723" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Visualização do total investido (soma dos valores das transações com tipo “investimento”)</span></li></ul><ul id="7f0b7375-7ad4-4100-b785-28299e26494f" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Registro de transações</span><ul id="0f65731b-5a9b-404b-9c09-a35d82fe1ade" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Salvar transação</span></li></ul><ul id="efc1879c-7ca6-4b4e-b771-1198871a544e" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Editar transação</span></li></ul><ul id="ac70aa4a-2252-4235-8076-840c91cba147" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Deletar transação</span></li></ul></li></ul><ul id="916794e9-87c9-4090-a77b-14157fcb1910" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Listagem de transações</span><ul id="9f01ae53-71ed-411a-8b3e-a9dddfd53e0a" class="bulleted-list"><li style="list-style-type:disc">Filtros:<ul id="2d2a877f-20bb-4691-91fb-a1bb920dfacb" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Por um determinado destinatário</span></li></ul><ul id="e6b28772-46f8-4833-b299-ff2ca859db3a" class="bulleted-list"><li style="list-style-type:circle">Por data da operação<ul id="6461f496-0abf-4f51-8497-03ce3c5bf0e6" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Por data específica</span></li></ul><ul id="a6c56780-4bc2-4436-9049-48d06ee64d46" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Por intervalo de datas</span></li></ul></li></ul><ul id="9f770220-744c-49e2-a39b-8f69ded55910" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Por tipo (saque, transferência, etc)</span></li></ul></li></ul><ul id="96ead5d4-5422-4897-8b0c-481faaf9325a" class="bulleted-list"><li style="list-style-type:disc">Agrupamentos:<ul id="008f298d-382e-4b9f-a02a-49f91fd7ec2c" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Por número de transferências para um determinado destinatário (ordem decrescente)</span></li></ul><ul id="a6184303-9b21-47d7-ad26-59133e60d71f" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Por destinatários</span></li></ul></li></ul></li></ul><h2 id="1a9045f5-f9b4-4dd2-abef-bab7a9838dd4" class="">Entidades</h2><pre id="6d6a6f69-37a6-45f6-9765-7a5a3f21604a" class="code"><code>classDiagram
+
+Transacao &lt;-- TipoDaTransacao 
+Transacao &quot;1&quot; &lt;--* &quot;1&quot; Destinatario
+Transacao &quot;1&quot; &lt;--* &quot;1&quot; Remetente
+Transacao --|&gt; AutoValidacao : implements
+
+class Transacao {
+	- id: long
+	- nomeUsuario: string
+	- remetente: Remetente
+	- tipoDaTransacao: TipoDaTransacao 
+	- destinatario: Destinatario
+	- valor: double
+	- dataDaOperacao: LocalDate
+	- dataDeEdicao: LocalDate
+	- dataDeDelecao: LocalDate
+
+	- verificarTransferenciaParaPropriaConta()  boolean
+	- verificarTransferenciaParaOutraConta() boolean
+	- atribuirNaturezaDaOperacao()  double
+}
+
+class TipoDaTransacao {
+	&lt;&lt;Enumeration&gt;&gt;
+	SAQUE
+	TRANSFERENCIA_PIX
+	TRANSFERENCIA_TED
+	DEPOSITO
+	INVESTIMENTO
+}
+
+class Destinatario {
+	- nome: string
+}
+
+class Remetente {
+	- nome: string
+}
+
+class AutoValidacao {
+	&lt;&lt;interface&gt;&gt;
+	validar()
+}</code></pre><ul id="dbfba735-f4f4-4430-93ce-9ec1c7e531f1" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><code>transferenciaParaPropriaConta()</code></span><p id="63224ec2-9ebf-4d30-b4cc-bdaef653f845" class="">Verificação: Transferência com destinatário como o próprio usuário</p><ul id="0395d72c-8553-4cc7-b857-393b1f2288cf" class="bulleted-list"><li style="list-style-type:disc">Verificar se <code>nomeUsuario</code> é igual a <code>destinatario.nome</code></li></ul><ul id="24e2aae3-0d4b-4715-9019-49107a665386" class="bulleted-list"><li style="list-style-type:disc">Se <code>nomeUsuario == remetente.nome == destinatario.nome</code> :<p id="927bca10-2752-4c94-86f2-f23c6c8c9380" class="">Atribuir (no construtor) o tipo da transação como “investimento”</p></li></ul></li></ul><ul id="cc43e9b0-e8aa-45bb-a0aa-0a06b7574a0f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><code>atribuirNaturezaDaOperacao()</code> </span><p id="c9282cf0-55d1-47c8-95cd-18f6b53de220" class="">Verificação: atribuição do sinal algébrico na propriedade <code>valor</code>:</p><ul id="7305e3de-925b-45fa-96ff-986ec0b1865c" class="bulleted-list"><li style="list-style-type:disc"><code>+</code> = depósito / transferência com destinatário como o próprio usuário (ENTRADA)</li></ul><ul id="ebc60f98-e4ca-408e-93ba-3ae3082fdb91" class="bulleted-list"><li style="list-style-type:disc"><code>-</code> = saque / transferência para outra pessoa / investimento (SAÍDA)</li></ul></li></ul><ul id="a7666fc2-aac9-44a5-a4c7-8d7f89820244" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><code>verificarTransferenciaParaOutraConta()</code></span><p id="82577f51-08ff-43d1-afde-e80a7ad3adec" class="">Verificação: Transferência para outra pessoa</p><ul id="d3d09038-7899-46bd-b14b-5962cb00200d" class="bulleted-list"><li style="list-style-type:disc">Verificar se <code>nomeUsuario</code> é igual a <code>remetente.nome</code></li></ul></li></ul><h2 id="f9ac8201-7d6b-413a-a57f-dbc5b48d1cf6" class="">Casos de uso</h2><ul id="3beadee9-67c3-424a-b33c-deed2df22d43" class="toggle"><li><details open=""><summary>Calcular saldo final</summary><p id="2cc446e3-7978-4d56-a7a2-af6f8577e44d" class="">Somatória dos valores de todas as transações com um determinado <code>nomeUsuario</code></p></details></li></ul><ul id="338f4bc9-60a4-4d53-a9e7-198e9afac897" class="toggle"><li><details open=""><summary>Calcular total investido</summary><p id="435f2046-c9a3-4b3c-94b5-6e84a43a1c78" class="">Somatória dos valores de todas as transações de um determinado <code>nomeUsuario</code> e com o tipo da transação como “investimento”</p></details></li></ul><ul id="47fc2648-5111-4b80-9dca-3f0f4b4ac69c" class="toggle"><li><details open=""><summary>Registrar nova transação</summary><p id="e2a0d0d9-c284-419f-a4d0-24d3c033dbd3" class="">Salvar uma nova transação do usuário no banco de dados</p></details></li></ul><ul id="4f0a214a-c4a7-437a-8451-2b58b1bebb6f" class="toggle"><li><details open=""><summary>Editar uma transação</summary><ul id="4c26a292-b2c2-45cb-bb4c-1e14d88ff61e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Verificação: se a transação existe</span><ul id="d2516b10-2024-41ad-81e7-be00dc59d4f3" class="bulleted-list"><li style="list-style-type:disc">Existe: atualização dos novos dados da transação</li></ul><ul id="11da7848-21d9-4998-b255-ac2999af886a" class="bulleted-list"><li style="list-style-type:disc">Não existe: lançar erro</li></ul></li></ul></details></li></ul><ul id="3bb35228-5e83-47ff-ba39-0eedb3a818d2" class="toggle"><li><details open=""><summary>Deletar um transação</summary><p id="7b866a85-5939-48f5-8811-01f3fd5889d6" class="">A transação não será deletada do banco de dados, apenas editada para definir a data de deleção dela.</p><p id="013b56bf-95f0-4bcd-9af0-814f4afb0adb" class="">Dessa forma, as transações com <code>dataDeDelecao ≠ null</code> não deverão ser exibidas para o usuário.</p></details></li></ul><ul id="3807d4d7-1f68-4b64-936b-fb1d7d25fc99" class="toggle"><li><details open=""><summary>Filtrar transações pelo destinatário</summary><p id="ec194823-02a0-483b-84b8-a5a602a6cac2" class="">Listar todas as transações de um usuário com um determinado destinatário</p></details></li></ul><ul id="d72814bb-725f-4b12-95ec-d28b3925bbbe" class="toggle"><li><details open=""><summary>Filtrar transações por data</summary><p id="ed69fa47-3a79-4c03-a4ef-a573b9a8fe7b" class="">Listar todas as transações de um usuário com uma determinada data de operação</p><ul id="9c0eaa9d-6dd2-4d66-b620-0d6aa30d3f74" class="bulleted-list"><li style="list-style-type:disc">Verificações<ul id="58ae9f27-1011-41cb-8ab2-23cdff420e38" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Se a data de operação é uma data passada ou hoje</span></li></ul></li></ul></details></li></ul><ul id="ff8d07cd-734f-496d-8d63-badbf35484e4" class="toggle"><li><details open=""><summary>Filtrar transações por intervalo de datas</summary><p id="57e83757-0612-4a02-996b-4a00309db8e7" class="">Listar todas as transações de um usuário com um a data de operação presente em um determinado intervalo de tempo</p><ul id="266471f0-883a-4430-8a42-26760b5683ca" class="bulleted-list"><li style="list-style-type:disc">Verificações<ul id="1068efbe-1d3b-42a6-a8cf-4be006fca970" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Se o intervalo de datas não é uma data específica</span></li></ul><ul id="187d5944-1b26-47d9-a458-c1e6b58403b4" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Se a data de operação é uma data passada ou hoje</span></li></ul></li></ul></details></li></ul><ul id="2d700b6d-3c65-4135-bfb3-8f2495c13150" class="toggle"><li><details open=""><summary>Filtrar transações por tipo</summary><p id="085f2d40-3118-4895-b135-2626dc6af799" class="">Listar todas as transações de um usuário com um determinado tipo (saque, depósito)</p></details></li></ul><ul id="67e3e31c-37fc-4d54-bbc0-ca22c1ab5e2e" class="toggle"><li><details open=""><summary>Agrupar transações de transferência por destinatário</summary><p id="93ea98d5-08ba-40b4-9ba2-ea232a284088" class="">Listar por ordem decrescente o número de transações do tipo transferência enviadas pelo usuário por destinatário.</p><pre id="e4473639-4148-478f-853a-16da0840a98e" class="code"><code>[
+	{
+		&quot;nome_usuario&quot;: &quot;Gabriel&quot;,
+		&quot;destinatario&quot;: &quot;João da Silva&quot;,
+		&quot;tranferencias_recebidas&quot;: 2,
+		&quot;historico&quot;: [
+			{
+				&quot;data_de_operacao&quot;: &quot;20/12/2022&quot;,
+				&quot;valor&quot;: 100.0
+			},
+			{
+				&quot;data_de_operacao&quot;: &quot;10/12/2022&quot;,
+				&quot;valor&quot;: 200.0
+			},
+		]
+	},
+	// ...
+]</code></pre></details></li></ul></div></article></body></html>
