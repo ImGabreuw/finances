@@ -1,0 +1,1034 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Fornecer dados de ações</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a8d53124-dcaf-44ca-be84-8f7039194a03" class="page sans"><header><h1 class="page-title">Fornecer dados de ações</h1><table class="properties"><tbody><tr class="property-row property-row-status"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesStatus"><path d="M8.75488 1.02344C8.75488 0.613281 8.41309 0.264648 8.00293 0.264648C7.59277 0.264648 7.25098 0.613281 7.25098 1.02344V3.11523C7.25098 3.51855 7.59277 3.86719 8.00293 3.86719C8.41309 3.86719 8.75488 3.51855 8.75488 3.11523V1.02344ZM3.91504 5.0293C4.20215 5.31641 4.69434 5.32324 4.97461 5.03613C5.26855 4.74902 5.26855 4.25684 4.98145 3.96973L3.53906 2.52051C3.25195 2.2334 2.7666 2.21973 2.47949 2.50684C2.19238 2.79395 2.18555 3.28613 2.47266 3.57324L3.91504 5.0293ZM10.9629 4.01758C10.6826 4.30469 10.6826 4.79688 10.9697 5.08398C11.2568 5.37109 11.749 5.36426 12.0361 5.07715L13.4854 3.62793C13.7725 3.34082 13.7725 2.84863 13.4785 2.55469C13.1982 2.27441 12.7061 2.27441 12.4189 2.56152L10.9629 4.01758ZM15.0234 8.78906C15.4336 8.78906 15.7822 8.44727 15.7822 8.03711C15.7822 7.62695 15.4336 7.28516 15.0234 7.28516H12.9385C12.5283 7.28516 12.1797 7.62695 12.1797 8.03711C12.1797 8.44727 12.5283 8.78906 12.9385 8.78906H15.0234ZM0.975586 7.28516C0.56543 7.28516 0.223633 7.62695 0.223633 8.03711C0.223633 8.44727 0.56543 8.78906 0.975586 8.78906H3.07422C3.48438 8.78906 3.83301 8.44727 3.83301 8.03711C3.83301 7.62695 3.48438 7.28516 3.07422 7.28516H0.975586ZM12.0361 10.9902C11.749 10.71 11.2568 10.71 10.9629 10.9971C10.6826 11.2842 10.6826 11.7764 10.9697 12.0635L12.4258 13.5127C12.7129 13.7998 13.2051 13.793 13.4922 13.5059C13.7793 13.2256 13.7725 12.7266 13.4854 12.4395L12.0361 10.9902ZM2.52051 12.4395C2.22656 12.7266 2.22656 13.2188 2.50684 13.5059C2.79395 13.793 3.28613 13.7998 3.57324 13.5127L5.02246 12.0703C5.31641 11.7832 5.31641 11.291 5.03613 11.0039C4.74902 10.7168 4.25684 10.71 3.96973 10.9971L2.52051 12.4395ZM8.75488 12.9658C8.75488 12.5557 8.41309 12.207 8.00293 12.207C7.59277 12.207 7.25098 12.5557 7.25098 12.9658V15.0576C7.25098 15.4609 7.59277 15.8096 8.00293 15.8096C8.41309 15.8096 8.75488 15.4609 8.75488 15.0576V12.9658Z"></path></svg></span>Progresso</th><td><span class="status-value select-value-color-orange"><div class="status-dot status-dot-color-orange"></div>Pronto para desenvolvimento</span></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM7.62402 10.6348C7.79492 10.915 8.20508 10.9287 8.37598 10.6348L10.666 6.73145C10.8574 6.41016 10.7002 6.04102 10.3652 6.04102H5.62793C5.29297 6.04102 5.14941 6.43066 5.32031 6.73145L7.62402 10.6348Z"></path></svg></span>Prioridade</th><td><span class="selected-value select-value-color-red">Alto</span></td></tr></tbody></table></header><div class="page-body"><h2 id="c1dce917-68d0-47f0-972c-940a0d47d6d6" class="">Funcionalidade</h2><p id="5a51ec0a-6093-4bff-a5f3-2c7d87a046dc" class="">Fornecer dados para outras APIs de uma determinada ação:</p><ul id="076f6fb7-9014-449b-a9b3-26462b98dbde" class="toggle"><li><details open=""><summary>Cotação</summary><ul id="bb73ca14-3664-4628-b259-63b93fa337b8" class="bulleted-list"><li style="list-style-type:disc">Preço do dia</li></ul><ul id="6ddd5abc-c759-4043-95d4-00d82df40b6d" class="bulleted-list"><li style="list-style-type:disc">Variação do dia</li></ul></details></li></ul><ul id="dc40126c-51e1-4bb6-8324-f27437a00d09" class="toggle"><li><details open=""><summary>Indicadores</summary><ul id="592d6c48-fb56-4afe-aa54-d3494916f904" class="bulleted-list"><li style="list-style-type:disc">Mínima do ano e mês</li></ul><ul id="2be85c07-79e6-4c13-a733-aeb25d2f5f44" class="bulleted-list"><li style="list-style-type:disc">Máxima do ano e mês</li></ul><ul id="e83b96e3-f0d9-47dc-a469-19b610cffefd" class="bulleted-list"><li style="list-style-type:disc">Dividend yield</li></ul><ul id="1d4c923a-972f-418e-be0d-4fad4c375595" class="bulleted-list"><li style="list-style-type:disc">Valorização do ano e mês</li></ul><ul id="68b52c48-35d0-4c21-a9c2-9ad1f460b63c" class="bulleted-list"><li style="list-style-type:disc">Indicadores de valuation</li></ul><ul id="2fb37a76-0c0c-4225-8f7f-53a9bbddbe10" class="bulleted-list"><li style="list-style-type:disc">Indicadores de endividademento</li></ul><ul id="182fbba7-c314-4616-b5df-a0950d7d8b1c" class="bulleted-list"><li style="list-style-type:disc">Indicadores de eficiência</li></ul><ul id="61534104-6278-4e4b-8bf1-945699a6292a" class="bulleted-list"><li style="list-style-type:disc">Payout</li></ul></details></li></ul><ul id="2963d2d6-432c-482e-a513-06838098d941" class="toggle"><li><details open=""><summary>Informações gerais</summary><ul id="ac5d829e-dd86-411f-ae92-1c57492c56f4" class="bulleted-list"><li style="list-style-type:disc">PL</li></ul><ul id="6885c1d7-bbfe-4090-bbdf-1fcd9fc24aaa" class="bulleted-list"><li style="list-style-type:disc">Ativos e Ativos circulantes</li></ul><ul id="b4630d9d-2030-4e4c-ba86-664806f5baf4" class="bulleted-list"><li style="list-style-type:disc">Divida bruta e líquida</li></ul><ul id="6f0db14f-afbd-44b6-97d7-9b06ac55d785" class="bulleted-list"><li style="list-style-type:disc">Disponibilidade de caixa</li></ul><ul id="51052d33-022c-44e4-a728-165328617908" class="bulleted-list"><li style="list-style-type:disc">Valor de mercado e de firma</li></ul><ul id="71412309-ce27-4d65-ad68-2c491e877489" class="bulleted-list"><li style="list-style-type:disc">Número de papéis</li></ul><ul id="b29ed20d-02ef-4ea7-990f-ecfc62933e58" class="bulleted-list"><li style="list-style-type:disc">Free Float</li></ul><ul id="c0b1ced4-7cd3-44bd-8e56-794ba5e91a0c" class="bulleted-list"><li style="list-style-type:disc">Segmento de listagem</li></ul><ul id="7f8e8839-6380-4ac3-bef6-7073462f3391" class="bulleted-list"><li style="list-style-type:disc">Setor, subsetor e segmento de atuação</li></ul><ul id="03a73fa6-87d2-485f-839b-d6a72cd087cf" class="bulleted-list"><li style="list-style-type:disc">Distribuição de capital<ul id="3579de70-bad9-4694-9a7a-fb51bf7eb99a" class="bulleted-list"><li style="list-style-type:circle">Data base</li></ul><ul id="77bbf70f-2ea0-4943-a2ea-11860d7522b5" class="bulleted-list"><li style="list-style-type:circle">Nº de investidores (apenas valores absolutos)<ul id="cb20abb7-b7c3-4107-ae7e-046a52abc94b" class="bulleted-list"><li style="list-style-type:square">Total</li></ul><ul id="db5ea3f1-a984-4092-a63f-6f83e97035dd" class="bulleted-list"><li style="list-style-type:square">Institucional</li></ul><ul id="c4adcab0-bfff-427b-88d9-2236599c2e77" class="bulleted-list"><li style="list-style-type:square">Pessoa jurídica</li></ul><ul id="17be78b3-04c1-4ee0-a8db-00070a643212" class="bulleted-list"><li style="list-style-type:square">Pessoa física</li></ul></li></ul></li></ul></details></li></ul><ul id="a7ef0da5-9ab4-4ac5-9e56-ed746abdf1f1" class="toggle"><li><details open=""><summary>Eventos corporativos</summary><ul id="082ed2c7-458c-46f6-9e39-f9f63aa26b4d" class="bulleted-list"><li style="list-style-type:disc">Dividendos<ul id="1ca8f138-4810-4c85-b9b7-e4be6682a1bd" class="bulleted-list"><li style="list-style-type:circle">Último dividendo pago:<ul id="aee2e52d-cdff-496a-8852-6d333f1cad9a" class="bulleted-list"><li style="list-style-type:square">Tipo (JCP, dividendo, etc)</li></ul><ul id="53007381-7c04-4ca3-a8e5-3d28cbd2f43c" class="bulleted-list"><li style="list-style-type:square">Data com</li></ul><ul id="505013ef-7bcf-4e56-ab4b-fa92029ee061" class="bulleted-list"><li style="list-style-type:square">Data de pagamento</li></ul><ul id="a3848377-264d-4830-b768-6e29fd1f56a7" class="bulleted-list"><li style="list-style-type:square">Valor</li></ul></li></ul><ul id="9a276eaa-32a4-428c-b90e-c41b0e08e2f3" class="bulleted-list"><li style="list-style-type:circle">Ano passado</li></ul><ul id="3b39078b-a616-4119-bd3d-a8cc54ad130b" class="bulleted-list"><li style="list-style-type:circle">Ano atual</li></ul><ul id="a747972e-5a19-4e7b-94da-41682cbe5cf0" class="bulleted-list"><li style="list-style-type:circle">Comparação entre ano passado e atual</li></ul></li></ul><ul id="254aaa1a-d293-4953-8c68-df12a8fce002" class="bulleted-list"><li style="list-style-type:disc">Bonificação<ul id="5cc34078-de27-4424-a677-4c648b655230" class="bulleted-list"><li style="list-style-type:circle">Data do anúncio</li></ul><ul id="3d0da234-f874-44f1-8504-514899ec7842" class="bulleted-list"><li style="list-style-type:circle">Data com</li></ul><ul id="7b2abdbf-5162-475e-8af6-3cdd47ad54be" class="bulleted-list"><li style="list-style-type:circle">Data de incorporação</li></ul><ul id="cf7a3f1b-3ab8-462c-913f-d97ae7afe62f" class="bulleted-list"><li style="list-style-type:circle">Valor base</li></ul><ul id="d399c2c7-11fb-46fb-af9f-8a29b8b4a4fb" class="bulleted-list"><li style="list-style-type:circle">Proporção</li></ul><ul id="7c74423a-c31e-46a0-b53d-1f0d17df38aa" class="bulleted-list"><li style="list-style-type:circle">Ativo emitido (ex: bbdc4)</li></ul></li></ul><ul id="1f614d8b-fb59-41ea-b150-cd9639d6715b" class="bulleted-list"><li style="list-style-type:disc">Subscrição<ul id="5666c8d9-2852-4f3c-8ea9-849c42732abb" class="bulleted-list"><li style="list-style-type:circle">Data do anúncio</li></ul><ul id="c5001c41-e9d1-4867-8ee5-da88bf4cbb31" class="bulleted-list"><li style="list-style-type:circle">Data com</li></ul><ul id="81587d43-0f54-4089-973e-372fe7feb990" class="bulleted-list"><li style="list-style-type:circle">Data de negociação</li></ul><ul id="94a7b428-b0e1-48a9-96a9-e734daffb2ce" class="bulleted-list"><li style="list-style-type:circle">Valor base</li></ul><ul id="0e85e31c-c659-44dd-ad6a-a8b75037705b" class="bulleted-list"><li style="list-style-type:circle">Percentual</li></ul><ul id="499e9352-836a-44ca-b6ae-050c6f3da945" class="bulleted-list"><li style="list-style-type:circle">Ativo emitido</li></ul></li></ul></details></li></ul><ul id="dbe2fcca-31d0-472b-b3f7-72fd731728da" class="toggle"><li><details open=""><summary>Notícias</summary><blockquote id="6b2340e8-1517-4aa2-a488-462c534567e8" class="">Notificar apenas as notícias que  não existem no banco de dados (verificar a partir da URL da notícia.</blockquote><ul id="4ed512f9-503f-452d-8c7b-5eded7de59fd" class="bulleted-list"><li style="list-style-type:disc">Título</li></ul><ul id="c390a198-1af4-4caf-b288-d8dccc857844" class="bulleted-list"><li style="list-style-type:disc">Data e hora de publicação</li></ul><ul id="fa0a56d0-a2ba-4b97-9e96-a62bd8c98eaf" class="bulleted-list"><li style="list-style-type:disc">URL</li></ul></details></li></ul><ul id="80c2b3b5-22a8-452d-81a7-be06880243d3" class="toggle"><li><details open=""><summary>Comunicados</summary><blockquote id="d10ee65f-a3c7-4dd4-a41f-6b16a777ca29" class="">Obter o último comunicado publicado no site Status Invest</blockquote><ul id="7825db76-ca4b-4d54-bc2b-1be582169859" class="bulleted-list"><li style="list-style-type:disc">Título (ex: “Fato relevante”)</li></ul><ul id="058776ec-13c5-4a07-8459-41ddea981a16" class="bulleted-list"><li style="list-style-type:disc">Data de publicação</li></ul><ul id="ed701e8c-b175-4d7f-9660-dfdda0c80915" class="bulleted-list"><li style="list-style-type:disc">URL de download do comunicado</li></ul></details></li></ul><h2 id="d85e0cea-ac85-471b-8df3-d8afb5ce9f9a" class="">Entidades</h2><ul id="6997bc75-b705-452f-a304-e1e0766f7bb5" class="toggle"><li><details open=""><summary>Cotação</summary><pre id="a1b6853a-6528-4101-871b-6cca36ccbb12" class="code"><code>classDiagram
+
+class Cotacao {
+	precoDoDia: double
+	variacaoDoDia: double
+}</code></pre></details></li></ul><ul id="2127d0ef-485d-48fa-bf76-40088604c4ab" class="toggle"><li><details open=""><summary>Indicadores</summary><pre id="063850c7-8c96-4bc1-9365-b2e39bbb18be" class="code"><code>classDiagram
+
+Indicadores &lt;--* IndicadoresDeValuation
+Indicadores &lt;--* IndicadoresDeEndividamento
+Indicadores &lt;--* IndicadoresDeEficiencia
+Indicadores &lt;--* IndicadoresDeRentabilidade
+Indicadores &lt;--* IndicadoresDeCrescimento
+Indicadores &lt;--* Payout
+
+class Indicadores {
+	- precoMinimoDoMes: double
+	- precoMinimoDoAno: double
+	- precoMaximoDoMes: double
+	- precoMaximoDoAno: double
+	- valorizacaoDoMes: double
+	- valorizacaoDoAno: double
+	- indicadorDeValuation: IndicadoresDeValuation
+	- indicadorDeValuation: IndicadoresDeEndividamento 
+	- indicadorDeValuation: IndicadoresDeEficiencia 
+	- indicadorDeValuation: IndicadoresDeRentabilidade 
+	- indicadorDeValuation: IndicadoresDeCrescimento 
+	- payout: Payout
+}
+
+class IndicadoresDeValuation {
+	- dividendYield: double
+	- p/l: double
+	- pegRatio: double
+	- p/vp: double
+	- ev/ebitda: double
+	- ev/ebit: double
+	- p/ebitda: double
+	- p/ebit: double
+	- vpa: double
+	- p/ativo: double
+	- lpa: double
+	- p/sr: double
+	- p/capitalDeGiro: double
+	- p/ativoCirculantesLiquidos: double
+}
+
+class IndicadoresDeEndividamento {
+	- dividaLiquida/pl: double
+	- dividaLiquida/ebitda: double
+	- dividaLiquida/ebit: double
+	- pl/ativos: double
+	- passivos/ativos: double
+	- liquidezCorrente: double
+}
+
+class IndicadoresDeEficiencia {
+	- margemBruta: double
+	- margemEbitda: double
+	- margemEbit: double
+	- margemLiquida: double
+}
+
+class IndicadoresDeRentabilidade {
+	- roe: double
+	- roa: double
+	- roic: double
+	- giroAtivos: double
+}
+
+class IndicadoresDeCrescimento {
+	- cagrDeReceitasUltimos5anos: double
+	- cagrDeLucrosUltimos5anos: double
+}
+
+class Payout {
+	- media: double
+	- atual: double
+	- menorValor: double
+	- maiorValor: double
+}</code></pre></details></li></ul><ul id="2dea69c1-e430-434d-b924-8eb2a9bfca60" class="toggle"><li><details open=""><summary>Informações gerais</summary><pre id="40441c3c-0dd9-4d9b-a4fd-6fe2f7fcbeb0" class="code"><code>classDiagram
+
+class InformacoesGerais {
+	pl: long
+	ativos: long
+	ativosCirculantes: long
+	dividaBruta: long
+	dividaLiquida: long
+	disponibolidadeDeCaixa: long
+	valorDeMercado: long
+	valorDeFirma: long
+	numeroDePapeis: long
+  freeFloat: long
+  segmentoDeListagem: string
+  setorDeAtuacao: string
+  subsetorDeAtuacao: string
+  segmentoDeAtuacao: string
+  totalDeInvestidores: long
+}</code></pre></details></li></ul><ul id="7fcb4cdc-18a3-4856-a5bf-a8810dee78c1" class="toggle"><li><details open=""><summary>Eventos corporativos</summary><pre id="664841e9-8891-42b0-832b-bf9892e728de" class="code"><code>classDiagram
+ 
+Dividendo &lt;-- TipoDoDividendo 
+
+class Dividendo {
+	tipo: TipoDoDividendo 
+	dataCom: Date
+	dataDePagamento: Date
+	valor: double
+}
+
+class TipoDoDividendo {
+	&lt;&lt;enumeration&gt;&gt;
+	JCP
+	DIVIDENDO
+	RENDIMENTO_TRIBUTADO
+}
+
+class Bonificacao {
+	dataDoAnuncio: Date
+	dataCom: Date
+	dataDeIncorporacao: Date
+	valorBase: double
+	proporcao: double
+	ativoEmitido: string
+}
+
+class Subscricao {
+	dataDoAnuncio: Date
+	dataCom: Date
+	dataDeNegociacao: Date
+	valorBase: double
+	percentual: double
+	ativoEmitido: string
+}</code></pre></details></li></ul><ul id="c0557418-5e55-4772-90b9-d5b041762428" class="toggle"><li><details open=""><summary>Comunicado</summary><pre id="9dbe6a5c-2110-461c-afb6-c789b8850874" class="code"><code>classDiagram
+
+class Anuncio {
+	titulo: string
+	dataDePublicacao: Date
+	url: string
+}</code></pre></details></li></ul><h2 id="dfad3715-c103-4801-b25f-c29663cb32db" class="">Casos de uso</h2><ul id="60300c5a-8762-48b9-a445-86397f0ad554" class="toggle"><li><details open=""><summary>Obter a cotação do dia</summary><ol type="1" id="ae0621d3-71b4-4c46-bb74-e1cb08ea6cde" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="4fad3bf9-bb61-47b8-a1e0-165d6e14bb2c" class="code"><code>GET http://localhost:3000/stocks/quotation/BBAS3</code></pre></li></ol><ol type="1" id="cdf0ff56-b9bf-4224-8d37-0b648325f733" class="numbered-list" start="2"><li>Execução do processo de extração de dados</li></ol><ol type="1" id="b0b511f3-d64c-4de8-84ac-7b287f4f3280" class="numbered-list" start="3"><li>Envio de um resposta para o cliente no seguinte formato:<pre id="0461fd3f-3233-471b-add6-c1b9b6738e71" class="code"><code>{
+	&quot;código do ativo&quot;: ...,
+	&quot;preço atual&quot;: ...,
+	&quot;variação atual em porcentagem&quot;: ...,
+}</code></pre></li></ol></details></li></ul><ul id="a1d7e741-e684-4f73-a95d-873cd485c22f" class="toggle"><li><details open=""><summary>Obter os indicadores fundamentalistas</summary><ol type="1" id="57ade564-ef06-4c32-a448-268b4b3732c3" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="29918f82-b092-4bc8-9e00-193bdc6d72d8" class="code"><code>GET http://localhost:3000/stocks/indicators/BBAS3</code></pre></li></ol><ol type="1" id="7a3a4b75-ba74-4d60-94d4-3259527607c1" class="numbered-list" start="2"><li>Execução do processo de extração de dados</li></ol><ol type="1" id="d21ba0e2-6a1a-4c3c-8276-2ca71c3a0b99" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="b7fefc4d-9ab1-4203-a720-ae65d414c5a7" class="code"><code>{
+	&quot;código do ativo&quot;: ...,
+	&quot;indicadores de valuation&quot;: {
+		// ...
+	},
+	&quot;indicadores de endividamento&quot;: {
+		// ...
+	},
+	&quot;indicadores de eficiência&quot;: {
+		// ...
+	},
+	&quot;indicadores de rentabilidade&quot;: {
+		// ...
+	},
+	&quot;indicadores de rentabilidade&quot;: {
+		// ...
+	}
+}</code></pre><ul id="674c718e-8c93-4165-b40e-873ed83ba8b6" class="toggle"><li><details open=""><summary><mark class="highlight-yellow_background">Atualização futura</mark></summary><pre id="ec175db3-e436-443a-92f2-1e23f47f1ad6" class="code"><code>{
+	&quot;código do ativo&quot;: ...,
+	&quot;indicadores de valuation&quot;: {
+		&quot;atual&quot;: {
+			// ...
+		},
+		&quot;histórico&quot;: [
+			{
+				&quot;ano&quot;: &quot;2021&quot;,
+				// ...
+			}	
+		],
+	},
+	&quot;indicadores de endividamento&quot;: {
+		&quot;atual&quot;: {
+			// ...
+		},
+		&quot;histórico&quot;: [
+			{
+				&quot;ano&quot;: &quot;2021&quot;,
+				// ...
+			}	
+		],
+	},
+	&quot;indicadores de eficiência&quot;: {
+		&quot;atual&quot;: {
+			// ...
+		},
+		&quot;histórico&quot;: [
+			{
+				&quot;ano&quot;: &quot;2021&quot;,
+				// ...
+			}	
+		],
+	},
+	&quot;indicadores de rentabilidade&quot;: {
+		&quot;atual&quot;: {
+			// ...
+		},
+		&quot;histórico&quot;: [
+			{
+				&quot;ano&quot;: &quot;2021&quot;,
+				// ...
+			}	
+		],
+	},
+	&quot;indicadores de rentabilidade&quot;: {
+		&quot;atual&quot;: {
+			// ...
+		},
+		&quot;histórico&quot;: [
+			{
+				&quot;ano&quot;: &quot;2021&quot;,
+				// ...
+			}	
+		],
+	}
+}</code></pre></details></li></ul></li></ol></details></li></ul><ul id="6f2e2759-f903-43c2-87f3-423430f95020" class="toggle"><li><details open=""><summary>Obter as informações gerais</summary><ol type="1" id="793ac66e-2c55-48f7-8522-303a362e99e6" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="cf86f797-c4db-4f94-b1bb-9caac23c339f" class="code"><code>GET http://localhost:3000/stocks/general-informations/BBAS3</code></pre></li></ol><ol type="1" id="4a08ed7d-8a17-45da-bde0-8705378b6d25" class="numbered-list" start="2"><li>Execução do processo de extração de dados</li></ol><ol type="1" id="b6c387e3-a284-4ed9-b03b-7b46a34e927a" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="e7692dd5-f791-4ce6-8b13-bba1442d55f7" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	// ...
+}</code></pre></li></ol></details></li></ul><ul id="106cc0b6-1ce3-4ae9-84a9-62e46492314d" class="toggle"><li><details open=""><summary>Montar resumo dos eventos corporativos</summary><ol type="1" id="15ad2a44-bc7c-4ef8-afe3-56e91dd673a4" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="ff9ef286-d327-4dad-a1b2-60f84f9bff15" class="code"><code>GET http://localhost:3000/stocks/corporative-events/BBAS3</code></pre></li></ol><ol type="1" id="c55dc04d-c3d6-4464-bf0b-3f3cce543a8e" class="numbered-list" start="2"><li>Execução do processo de extração de dados</li></ol><ol type="1" id="77b2f554-b36e-4302-9a82-fd1dc71ed3bf" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="9739b4e8-9415-4ad2-aeec-f41fc9978980" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;dividendos&quot;: {
+		// ..
+	},
+	&quot;bonificações&quot;: {
+		// ...
+	},
+	&quot;subscrições&quot;: {
+		// ...
+	}
+}</code></pre></li></ol></details></li></ul><ul id="8347687d-c012-49b8-97f3-b2bb3337f6d5" class="toggle"><li><details open=""><summary>Obter informações do último dividendo</summary><ol type="1" id="476ef1d4-1fba-498f-9fe5-c7dbb14031e7" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="2ac66bbb-feda-4c4e-89fe-77033e97aba3" class="code"><code>GET http://localhost:3000/stocks/corporative-events/last-dividend/BBAS3</code></pre></li></ol><ol type="1" id="f6549924-9bfe-4e38-b5d4-b2373ebe885b" class="numbered-list" start="2"><li>Execução do processo de extração de dados</li></ol><ol type="1" id="f60e59ac-581f-42f4-8c48-e881dfd8ff1a" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="e23dee18-c265-4fa6-9dbe-bd7bba95bbd8" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;dividendo&quot;: {
+		&quot;tipo&quot;: &quot;...&quot;,
+		&quot;data com&quot;: &quot;yyyy-MM-dd&quot;,
+		&quot;data de pagamento&quot;: &quot;yyyy-MM-dd&quot;,
+	  &quot;valor&quot;: ...,	 
+	}
+}</code></pre></li></ol></details></li></ul><ul id="7fe1f919-4f67-4e6b-b479-939c142603c5" class="toggle"><li><details open=""><summary>Calcular valor distribuído no ano anterior</summary><p id="aea88ef7-4905-4aa6-abff-74bab2af7009" class="">Somar o valor de todos os dividendos com a propriedade <code>dataCom == 2021</code> (ano anterior)</p></details></li></ul><ul id="4a2c5ebf-5165-4429-92a5-c294cad5f1b0" class="toggle"><li><details open=""><summary>Calcular valor distribuído no ano atual</summary><p id="5a7d2d3b-0dd3-43af-9e71-e60f5486536b" class="">Somar o valor de todos os dividendos com a propriedade <code>dataCom == 2022</code> (ano atual).</p></details></li></ul><ul id="7a79e968-cf38-4a90-ab33-592e2f55ca8d" class="toggle"><li><details open=""><summary>Montar resumo de dividendos</summary><ol type="1" id="0354b48c-c3b7-4899-aa0c-c618ccb5b6ee" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="c11eca7c-e6d1-43a4-92ac-6181cc3f6553" class="code"><code>GET http://localhost:3000/stocks/corporative-events/last-dividend-resume/BBAS3</code></pre></li></ol><ol type="1" id="2442eb39-18cb-41d4-a360-ddb41a243776" class="numbered-list" start="2"><li>Execução do processo de extração de dados</li></ol><ol type="1" id="e2aee36a-df1d-4776-81ad-48f86006f9f3" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="20f0b95b-3ed5-4744-9368-a583a78f9755" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;último dividendo&quot;: {
+		&quot;tipo&quot;: &quot;...&quot;,
+		&quot;data com&quot;: &quot;yyyy-MM-dd&quot;,
+		&quot;data de pagamento&quot;: &quot;yyyy-MM-dd&quot;,
+	  &quot;valor&quot;: ...,	 
+	},
+	&quot;valor ano passado&quot;: ...,
+	&quot;valor ano atual&quot;: ...,
+	&quot;variação&quot;: ...,
+}</code></pre></li></ol></details></li></ul><ul id="0a4e01e9-d737-4fcb-852b-7916fd5bc358" class="toggle"><li><details open=""><summary>Obter informações da última bonificação</summary><ol type="1" id="e85d3366-35ec-46e4-b8e8-b18b28deed9b" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="001bde63-eeae-4eb9-91e8-29a513268112" class="code"><code>GET http://localhost:3000/stocks/corporative-events/last-bonus/BBAS3</code></pre></li></ol><ol type="1" id="2022a74e-4b64-4ceb-8517-5bba308a91c5" class="numbered-list" start="2"><li>Execução do processo de extração de dados</li></ol><ol type="1" id="374e15e7-9b58-405e-a652-c07af963b87d" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="6da5018b-4e5e-4cbd-a6b8-ed5ad6805fbd" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;bonificação&quot;: {
+		&quot;data do anúncio&quot;: &quot;yyyy-MM-dd&quot;,
+		&quot;data com&quot;: &quot;yyyy-MM-dd&quot;,
+		&quot;data de incorporação&quot;: &quot;yyyy-MM-dd&quot;,
+	  &quot;valor base&quot;: ...,	 
+		&quot;proporção em porcentagem&quot;: ...,
+		&quot;ativo emitido&quot;: &quot;...&quot;,
+	}
+}</code></pre></li></ol></details></li></ul><ul id="11db04b4-c85c-43ab-b802-c5054b1fff5c" class="toggle"><li><details open=""><summary>Obter informações da última subscrição</summary><ol type="1" id="f2978912-4ff7-40db-b394-d732cacb5f19" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="9c46cf97-1cbd-4331-84e9-f0a968cba638" class="code"><code>GET http://localhost:3000/stocks/corporative-events/last-subscription/BBAS3</code></pre></li></ol><ol type="1" id="578c1fc4-87a0-4c7d-a527-9f00fee775ce" class="numbered-list" start="2"><li>Execução do processo de extração de dados</li></ol><ol type="1" id="be6cb432-81a0-4b65-b55c-a9c1f78ff02f" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="3b16374f-7849-4d6f-97af-b2677085cbb0" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;subscrição&quot;: {
+		&quot;data do anúncio&quot;: &quot;yyyy-MM-dd&quot;,
+		&quot;data com&quot;: &quot;yyyy-MM-dd&quot;,
+		&quot;data de negociação&quot;: &quot;yyyy-MM-dd&quot;,
+	  &quot;valor base&quot;: ...,	 
+		&quot;percentual&quot;: ...,
+		&quot;ativo emitido&quot;: &quot;...&quot;,
+	}
+}</code></pre></li></ol></details></li></ul><ul id="29b7b334-885b-40dd-93d4-74e0d4039bbb" class="toggle"><li><details open=""><summary>Obter as 3 últimas notícias</summary><ol type="1" id="a9f00479-3b73-4e40-881e-153fdace376f" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="610a0307-7b25-4de0-b0b0-9342f29600f5" class="code"><code>GET http://localhost:3000/stocks/news/BBAS3</code></pre></li></ol><ol type="1" id="f6310252-d214-49ec-9aec-eb3b0583fddc" class="numbered-list" start="2"><li>Execução do processo de extração de dados</li></ol><ol type="1" id="7261618a-57ed-4eab-a7bc-b80504d7447f" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="f0200b34-cce0-40f2-ab41-205339fcaefa" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;notícias&quot;: [
+		{
+			&quot;título&quot;: &quot;...&quot;,
+			&quot;data e hora de publicação&quot;: &quot;dd/MM/yyyy HH:mm:ss&quot;,
+			&quot;url&quot;: &quot;...&quot;,
+		},
+		{
+			&quot;título&quot;: &quot;...&quot;,
+			&quot;data e hora de publicação&quot;: &quot;dd/MM/yyyy HH:mm:ss&quot;,
+			&quot;url&quot;: &quot;...&quot;,
+		},
+		{
+			&quot;título&quot;: &quot;...&quot;,
+			&quot;data e hora de publicação&quot;: &quot;dd/MM/yyyy HH:mm:ss&quot;,
+			&quot;url&quot;: &quot;...&quot;,
+		},
+	]
+}
+</code></pre></li></ol></details></li></ul><ul id="94a17b21-f2d4-4e90-85d2-5b9f94f50fa9" class="toggle"><li><details open=""><summary>Obter notícia(s) a partir de palavras-chave no título  ou o título completo</summary><ol type="1" id="b9a7c1ac-6cf9-4ac6-b32d-cbbedf538e7b" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="6f5dcbcb-44b0-4fe6-af69-2afa3c7d8394" class="code"><code>POST http://localhost:3000/stocks/news/BBAS3
+
+{
+	&quot;título&quot;: &quot;...&quot;,
+}</code></pre></li></ol><ol type="1" id="706cdd59-72c5-4199-a614-dd16dac9e715" class="numbered-list" start="2"><li>Execução do processo de extração de dados</li></ol><ol type="1" id="0e0d6f22-ef92-441b-8bae-180316b92555" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="afbdc792-47ac-4324-a811-8f23b7317200" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;notícias&quot;: [
+		{
+			&quot;título&quot;: &quot;...&quot;,
+			&quot;data e hora de publicação&quot;: &quot;dd/MM/yyyy HH:mm:ss&quot;,
+			&quot;url&quot;: &quot;...&quot;,
+		},
+		// ...
+	]
+}
+</code></pre></li></ol></details></li></ul><ul id="2aadf7dd-a647-4662-8a9b-96ad6dfb0fc7" class="toggle"><li><details open=""><summary>Obter todas as notícias em um intervalo de tempo</summary><ol type="1" id="3467d130-da8b-4e74-a0ca-bce7b599b271" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="1ec26f8f-36d5-4edc-9d96-8297f32dc72b" class="code"><code>POST http://localhost:3000/stocks/news/BBAS3
+
+{
+	&quot;data inicio do intervalo&quot;: &quot;yyyy-MM-dd&quot;,
+	&quot;data fim do intervalo&quot;: &quot;yyyy-MM-dd&quot;,
+}</code></pre></li></ol><ol type="1" id="098730e1-bb71-4bb0-939d-3d7fc7afc928" class="numbered-list" start="2"><li>Execução do processo de extração de dados</li></ol><ol type="1" id="f7a1d67a-ef26-4297-8f08-6e4b3ab31a2e" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="5deef2f6-644b-437d-a200-51bb74c148c6" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;notícias&quot;: [
+		{
+			&quot;título&quot;: &quot;...&quot;,
+			&quot;data e hora de publicação&quot;: &quot;dd/MM/yyyy HH:mm:ss&quot;,
+			&quot;url&quot;: &quot;...&quot;,
+		},
+		{
+			&quot;título&quot;: &quot;...&quot;,
+			&quot;data e hora de publicação&quot;: &quot;dd/MM/yyyy HH:mm:ss&quot;,
+			&quot;url&quot;: &quot;...&quot;,
+		},
+		{
+			&quot;título&quot;: &quot;...&quot;,
+			&quot;data e hora de publicação&quot;: &quot;dd/MM/yyyy HH:mm:ss&quot;,
+			&quot;url&quot;: &quot;...&quot;,
+		},
+	]
+}
+</code></pre></li></ol></details></li></ul><ul id="9cf37c07-5568-418a-b73a-738084e6ea8d" class="toggle"><li><details open=""><summary>Obter o último comunicado</summary><ol type="1" id="6a219a2e-dbbd-4847-a02f-02e9ad66f039" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="6d1ccc16-10ec-4975-b42b-59fd71224df2" class="code"><code>GET http://localhost:3000/stocks/announcements/BBAS3</code></pre></li></ol><ol type="1" id="55f6117a-e54a-45fa-99a7-7360741ca9e0" class="numbered-list" start="2"><li>Execução do processo de extração de dados</li></ol><ol type="1" id="b0b3663c-8376-4864-b9f0-973c814d02f8" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="c638efce-50a4-419c-baea-5b7f5634ffe4" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;título&quot;: &quot;...&quot;,
+	&quot;data de publicação&quot;: &quot;yyyy-MM-dd&quot;,
+	&quot;url de download&quot;: &quot;...&quot;
+}</code></pre></li></ol></details></li></ul><ul id="762535e3-5515-4242-818b-49db1a8e5ea6" class="toggle"><li><details open=""><summary>Obter anúncio(s) a partir de palavras-chave no título ou o título completo</summary><ol type="1" id="96d595be-2d3b-42d7-aecd-0e1959e18edf" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="1bd3aacf-aeeb-45ac-b224-6bed5bbb633f" class="code"><code>GET http://localhost:3000/stocks/announcements/BBAS3</code></pre></li></ol><ol type="1" id="12d4e182-5194-41fe-b51f-9d2bb99392da" class="numbered-list" start="2"><li>Execução do processo de extração de dados</li></ol><ol type="1" id="1cfc3380-a6ee-4b78-8a6d-749c789a502b" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="9e29883e-3355-4a51-b177-fdd64887ccbf" class="code"><code>{
+	&quot;código do ativo&quot;: &quot;...&quot;,
+	&quot;comunicados&quot;: [
+		{
+			&quot;título&quot;: &quot;...&quot;,
+			&quot;data de publicação&quot;: &quot;yyyy-MM-dd&quot;,
+			&quot;url de download&quot;: &quot;...&quot;
+		},
+		// ...
+	]
+}
+</code></pre></li></ol></details></li></ul><ul id="c5be9076-bbcb-4e65-b7ff-cda742e71336" class="toggle"><li><details open=""><summary>Montar resumo do ativo</summary><ol type="1" id="62ef3214-2128-4a88-a87f-a5cd36d468c8" class="numbered-list" start="1"><li>Envio da requisição para a API do Finaces Data Provider:<pre id="7e82237c-ba7c-4b19-8f71-3ccda6f2f1d7" class="code"><code>GET http://localhost:3000/stocks/BBAS3</code></pre></li></ol><ol type="1" id="e96e9238-a06a-412c-a719-9f7335e1eadf" class="numbered-list" start="2"><li>Execução do processo de extração de dados</li></ol><ol type="1" id="b3193c2b-6790-48fd-99ad-c56cb09d18cf" class="numbered-list" start="3"><li>Envio de uma resposta para o cliente no seguinte formato:<pre id="a778f2d3-02f5-40bd-b6ab-07d44ae56f83" class="code"><code>{
+	&quot;assetCode&quot;: &quot;BBAS3&quot;,
+	&quot;cotação&quot;: {
+		// ...
+	},
+	&quot;indicadores&quot;: {
+		// ...
+	},
+	&quot;informações gerais&quot;: {
+		// ...
+	},
+	&quot;eventos corporativos&quot;: {
+		// ...
+	},
+	&quot;notícias&quot;: {
+		// ...
+	},
+	&quot;comunicados&quot;: {
+		// ...
+	}
+}</code></pre></li></ol></details></li></ul><p id="22cd5395-2981-4aac-a5b2-d3e7c432ad57" class="">
+</p></div></article></body></html>
