@@ -25,9 +25,7 @@ export default function Error({ error, reset }: ErrorProps) {
       </Lead>
 
       <Button onClick={reset}>
-        <Link href="/" prefetch={false}>
-          Voltar para o início
-        </Link>
+          Tentar novamente
       </Button>
     </div>
   );
