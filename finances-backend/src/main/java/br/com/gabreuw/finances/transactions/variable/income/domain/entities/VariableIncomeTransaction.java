@@ -17,7 +17,7 @@ public class VariableIncomeTransaction implements SelfValidation<VariableIncomeT
     private Long id;
 
     @NotBlank
-    // TODO: 01/09/2022 Create annotation to validate asset code in B3 
+    // TODO: 01/09/2022 Create annotation to validate asset code in B3
     private String assetCode;
 
     @NotNull
