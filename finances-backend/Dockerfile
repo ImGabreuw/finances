@@ -28,6 +28,5 @@ USER java
 COPY --from=build /app/target/finances-*.jar app.jar
 
 EXPOSE 8080
-HEALTHCHECK --interval=30s --timeout=3s CMD curl -sf -o /dev/null http://localhost:8080/actuator/health || exit 1
 
 ENTRYPOINT java $JAVA_OPTS -jar app.jar -Dspring.profiles.active=dev
