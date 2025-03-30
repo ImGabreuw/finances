@@ -1,5 +1,5 @@
 ### Save Transaction
-POST {{variable-income-transaction-endpoint}}
+POST {{base-url}}/variable_income/transaction
 Content-Type: application/json
 
 {
@@ -12,18 +12,18 @@ Content-Type: application/json
 }
 
 ### Delete Transaction by ID
-DELETE {{variable-income-transaction-endpoint}}/1
+DELETE {{base-url}}/variable_income/transaction/21
 
 ### Find all Transactions (default PageInfo)
-GET {{variable-income-transaction-endpoint}}
+GET {{base-url}}/variable_income/transaction
 
 ### Find all Transactions (custom PageInfo)
-GET {{variable-income-transaction-endpoint}}
+GET {{base-url}}/variable_income/transaction
 Content-Type: application/json
 
 {
   "pageNumber": 0,
-  "pageSize": 10,
+  "pageSize": 30,
   "orders": [
     {
       "direction": "DESC",
@@ -37,10 +37,10 @@ Content-Type: application/json
 }
 
 ### Find all Transaction of BBAS3 (default PageInfo)
-GET {{variable-income-transaction-endpoint}}/bbas3
+GET {{base-url}}/variable_income/transaction/bbas3
 
 ### Find all Transaction by AssetType "STOCK" (default PageInfo)
-GET {{variable-income-transaction-endpoint}}/assetType/STOCK
+GET {{base-url}}/variable_income/transaction/assetType/STOCK
 
 ### Find all Transaction with operation date of 09/09/2022 (default PageInfo)
-GET {{variable-income-transaction-endpoint}}/operationDate/2022-09-09
+GET {{base-url}}/variable_income/transaction/operationDate/2022-09-09
