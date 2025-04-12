@@ -35,3 +35,4 @@ build/
 ### Others ###
 *.mp4
 .docker
+*.csv

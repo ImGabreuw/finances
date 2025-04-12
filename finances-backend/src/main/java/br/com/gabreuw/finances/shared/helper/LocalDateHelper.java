@@ -68,7 +68,7 @@ public class LocalDateHelper {
     }
 
     public static LocalDate parse(String text, String format) {
-        if (!isDate(text)) {
+        if (text == null || text.isBlank()) {
             return null;
         }
 
