@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOGS" value="./logs"/>
+
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="co.elastic.logging.logback.EcsEncoder">
+            <serviceName>finances-app</serviceName>
+            <serviceVersion>1.0</serviceVersion>
+            <includeMarkers>true</includeMarkers>
+            <includeOrigin>false</includeOrigin>
+        </encoder>
+    </appender>
+
+    <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS}/application.json</file>
+        <encoder class="co.elastic.logging.logback.EcsEncoder">
+            <serviceName>finances-backend</serviceName>
+            <serviceVersion>1.0</serviceVersion>
+            <includeMarkers>true</includeMarkers>
+            <includeOrigin>false</includeOrigin>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOGS}/application-%d{yyyy-MM-dd}.json</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="Console"/>
+        <appender-ref ref="RollingFile"/>
+    </root>
+
+    <!-- Defina níveis específicos para os pacotes da aplicação -->
+    <logger name="br.com.gabreuw.finances" level="debug"/>
+</configuration>

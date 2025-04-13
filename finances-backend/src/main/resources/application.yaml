@@ -1,3 +1,10 @@
 spring:
   profiles:
     active: test
+
+logging:
+  level:
+    root: INFO
+    br.com.gabreuw.finances: DEBUG
+  file:
+    name: ./logs/application.json

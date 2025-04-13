@@ -9,7 +9,7 @@ import java.net.URISyntaxException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+@SpringBootTest(properties = {"spring.profiles.active=dev"})
 class ReadStatementFromCsvFileUseCaseTest {
 
     @Autowired
