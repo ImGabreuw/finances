@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-    <property name="LOGS" value="./logs"/>
+<configuration scan="true">
 
-    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="co.elastic.logging.logback.EcsEncoder">
-            <serviceName>finances-app</serviceName>
-            <serviceVersion>1.0</serviceVersion>
-            <includeMarkers>true</includeMarkers>
-            <includeOrigin>false</includeOrigin>
+    <!-- Defina propriedades para facilitar o gerenciamento dos logs -->
+    <property name="LOG_PATH" value="logs"/>
+    <property name="APP_NAME" value="finances-backend"/>
+
+    <!-- Appender para console -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOGS}/application.json</file>
-        <encoder class="co.elastic.logging.logback.EcsEncoder">
-            <serviceName>finances-backend</serviceName>
-            <serviceVersion>1.0</serviceVersion>
-            <includeMarkers>true</includeMarkers>
-            <includeOrigin>false</includeOrigin>
-        </encoder>
+    <!-- Appender para arquivo com log em formato JSON -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${APP_NAME}.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOGS}/application-%d{yyyy-MM-dd}.json</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/${APP_NAME}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
             <maxHistory>30</maxHistory>
-            <totalSizeCap>3GB</totalSizeCap>
         </rollingPolicy>
+        <encoder class="co.elastic.logging.logback.EcsEncoder">
+            <serviceName>${APP_NAME}</serviceName>
+            <serviceVersion>1.0.0</serviceVersion>
+        </encoder>
     </appender>
 
-    <root level="info">
-        <appender-ref ref="Console"/>
-        <appender-ref ref="RollingFile"/>
+    <!-- Configuração de logging para pacotes específicos (opcional) -->
+    <logger name="br.com.gabreuw.finances" level="DEBUG"/>
+
+    <!-- Configuração do log raiz -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
     </root>
 
-    <!-- Defina níveis específicos para os pacotes da aplicação -->
-    <logger name="br.com.gabreuw.finances" level="debug"/>
 </configuration>

@@ -36,3 +36,4 @@ build/
 *.mp4
 .docker
 *.csv
+logs/

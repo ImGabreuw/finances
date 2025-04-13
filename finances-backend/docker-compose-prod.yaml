@@ -1,18 +1,18 @@
 services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.7.0
-    container_name: elasticsearch-dev
+    container_name: elasticsearch
     environment:
       - discovery.type=single-node
-      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
     volumes:
-      - esdata-dev:/usr/share/elasticsearch/data
+      - esdata:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
 
   logstash:
     image: docker.elastic.co/logstash/logstash:8.7.0
-    container_name: logstash-dev
+    container_name: logstash
     volumes:
       - ./logstash/config:/usr/share/logstash/config
       - ./logstash/pipeline:/usr/share/logstash/pipeline
@@ -23,7 +23,9 @@ services:
 
   kibana:
     image: docker.elastic.co/kibana/kibana:8.7.0
-    container_name: kibana-dev
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     ports:
       - "5601:5601"
     depends_on:
@@ -31,13 +33,28 @@ services:
 
   filebeat:
     image: docker.elastic.co/beats/filebeat:8.7.0
-    container_name: filebeat-dev
+    container_name: filebeat
     user: root
     volumes:
       - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
-      - ../logs:/usr/share/filebeat/logs:ro
+      - filebeat-logs:/usr/share/filebeat/logs:ro
     depends_on:
       - logstash
 
+  finances-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: finances-backend
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    ports:
+      - "8080:8080"
+    volumes:
+      - filebeat-logs:/app/logs
+    depends_on:
+      - filebeat
+
 volumes:
-  esdata-dev:
+  esdata:
+  filebeat-logs:
