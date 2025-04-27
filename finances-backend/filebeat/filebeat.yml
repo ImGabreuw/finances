@@ -1,8 +1,10 @@
 filebeat.inputs:
-  - type: log
+  - type: filestream
+    id: finances-backend-logs
     enabled: true
     paths:
       - /usr/share/filebeat/logs/*.log
+      - /usr/share/filebeat/logs/*.json
 
 output.logstash:
-  hosts: ["logstash-dev:5000"]
+  hosts: [ "logstash:5044" ]

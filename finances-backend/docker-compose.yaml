@@ -1,29 +1,35 @@
 services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.7.0
-    container_name: elasticsearch-dev
+    container_name: elasticsearch
     environment:
       - discovery.type=single-node
       - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - xpack.security.enabled=false
+      - xpack.security.enrollment.enabled=false
     volumes:
-      - esdata-dev:/usr/share/elasticsearch/data
+      - esdata:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
 
   logstash:
     image: docker.elastic.co/logstash/logstash:8.7.0
-    container_name: logstash-dev
+    container_name: logstash
     volumes:
       - ./logstash/config:/usr/share/logstash/config
       - ./logstash/pipeline:/usr/share/logstash/pipeline
     ports:
       - "5000:5000"
+      - "5044:5044" # Beats input
     depends_on:
       - elasticsearch
 
   kibana:
     image: docker.elastic.co/kibana/kibana:8.7.0
-    container_name: kibana-dev
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - XPACK_SECURITY_ENABLED=false
     ports:
       - "5601:5601"
     depends_on:
@@ -31,7 +37,7 @@ services:
 
   filebeat:
     image: docker.elastic.co/beats/filebeat:8.7.0
-    container_name: filebeat-dev
+    container_name: filebeat
     user: root
     volumes:
       - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
@@ -40,4 +46,4 @@ services:
       - logstash
 
 volumes:
-  esdata-dev:
+  esdata:
