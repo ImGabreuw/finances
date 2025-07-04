@@ -1,0 +1,4 @@
+@host = http://localhost:3000
+
+### Get Stock Data
+GET {{host}}/stock/BBAS3
