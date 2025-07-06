@@ -1,5 +1,7 @@
+@host = http://localhost:8080/api/v1
+
 ### Save Transaction
-POST {{fixed-income-transaction-endpoint}}
+POST {{host}}/fixed_income/transaction
 Content-Type: application/json
 
 {
@@ -7,7 +9,7 @@ Content-Type: application/json
   "description": "Tesouro IPCA+ 2026",
   "profitabilityInPercent": 6.24,
   "indexer": "IPCA",
-  "liquidity": "diária",
+  "liquidity": "diáriaa",
   "expiresIn": "2026-08-15",
   "totalInvested": 4996.12,
   "units": 1.6,
@@ -15,13 +17,13 @@ Content-Type: application/json
 }
 
 ### Delete by ID
-DELETE {{fixed-income-transaction-endpoint}}/1
+DELETE {{host}}/fixed_income/transaction/1
 
 ### Find all Transactions (default PageInfo)
-GET {{fixed-income-transaction-endpoint}}
+GET {{host}}/fixed_income/transaction
 
 ### Find all Transactions (custom PageInfo)
-GET {{fixed-income-transaction-endpoint}}
+GET {{host}}/fixed_income/transaction
 Content-Type: application/json
 
 {

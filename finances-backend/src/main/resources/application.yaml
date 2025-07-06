@@ -2,5 +2,3 @@ logging:
   level:
     root: INFO
     br.com.gabreuw.finances: DEBUG
-  file:
-    path: logs
